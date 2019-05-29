@@ -1,0 +1,5 @@
+/config/
+/dist/
+/scripts/
+/*.js
+/src/locales/
