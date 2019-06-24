@@ -2,7 +2,6 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "配置的代理目标服务器地址",
   "dependencies": {
     "@babel/core": "7.4.3",
     "@svgr/webpack": "4.1.0",
