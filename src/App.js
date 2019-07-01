@@ -1,34 +1,82 @@
 import React from 'react'
-import logo from './logo.svg'
+// import axios from 'axios'
 import './App.css'
+import 'antd/dist/antd.css'
+import { Router, Route, Redirect } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import Home from './pages/home/home'
+import Login from './pages/login/login'
+import Register from './pages/login/register'
+const history = createBrowserHistory()
+// const location = history.location
+// const unlisten = history.listen((location, action) => {
+//   console.log(action, location.pathname, location.state)
+// })
 
 class App extends React.Component {
-  handleClick(num) {
-    let k = 9
-    var nums = [1, 2, 3, 4, 5, 6, 7, 8]
-
-    if (k > nums.length) {
-      k = k % nums.length
+  constructor(props) {
+    super(props)
+    this.state = {
+      userName: '',
+      pwd: '',
+      loggedIn: false
     }
-    let m = nums.splice(nums.length - k)
-    nums = m.concat(nums)
-    console.log(nums)
+  }
+
+  // getData() {
+  //   axios
+  //     .get('/get_movies')
+  //     .then(function(response) {
+  //       // handle success
+  //       console.log(response)
+  //     })
+  //     .catch(function(error) {
+  //       // handle error
+  //       console.log(error)
+  //     })
+  //     .finally(function() {
+  //       // always executed
+  //     })
+  // }
+  handleClick() {
+    history.push('/home', { some: 'state' })
   }
   render() {
+    const { loggedIn } = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p onClick={this.handleClick}>点我</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router history={history}>
+          {/* <ul>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/register">register</Link>
+            </li>
+          </ul> */}
+          <Route
+            exact
+            path="/"
+            render={() =>
+              loggedIn ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <Login router={history} />
+              )
+            }
+          />
+          <Route
+            path="/login"
+            exact
+            render={() => <Login router={history} />}
+          />
+          <Route path="/home" exact render={() => <Home router={history} />} />
+          <Route
+            path="/register"
+            exact
+            render={() => <Register router={history} />}
+          />
+        </Router>
       </div>
     )
   }
