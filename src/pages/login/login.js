@@ -1,9 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Input from 'antd/es/input' // 加载 JS
-import Form from 'antd/es/form'
-import Button from 'antd/es/button'
-import Icon from 'antd/es/icon'
+import { Input, Form, Button, Icon } from 'antd'
 import message from 'antd/es/message'
 import md5 from 'blueimp-md5'
 class Login extends React.Component {
