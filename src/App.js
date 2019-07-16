@@ -7,6 +7,8 @@ import { createBrowserHistory } from 'history'
 import Home from './pages/home/home'
 import Login from './pages/login/login'
 import Register from './pages/login/register'
+import Weather from './pages/weather/weather'
+import News from './pages/news/news'
 const history = createBrowserHistory()
 // const location = history.location
 // const unlisten = history.listen((location, action) => {
@@ -76,6 +78,12 @@ class App extends React.Component {
             exact
             render={() => <Register router={history} />}
           />
+          <Route
+            path="/Weather"
+            exact
+            render={() => <Weather router={history} />}
+          />
+          <Route path="/News" exact render={() => <News router={history} />} />
         </Router>
       </div>
     )

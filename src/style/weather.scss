@@ -1,0 +1,29 @@
+.computer-box{
+  margin:10px 0px;
+  .real-time{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0;
+    padding:0;
+    li{
+      list-style: none;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+  }
+  .weather-list{
+    h4{
+      width: 100%;
+    }
+    p{
+      margin:0;
+      padding-left:20px;
+    }
+  }
+}
+.result{
+  margin:0 10px;
+}
