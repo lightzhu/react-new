@@ -1,4 +1,4 @@
-.home{
+.home,.news{
   h2{
     color:#fff;
     font-size:24px;
@@ -25,5 +25,14 @@
   }
   .ant-list-item-meta-description{
     word-break: break-all;
+  }
+}
+.news{
+  select{
+    width: 50%;
+    border: 1px solid #ccc;
+    height: 30px;
+    margin:10px 0;
+    margin-left:80px;
   }
 }
