@@ -76,3 +76,25 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### .prettiterrc
 
 配置 prettiter 插件重写配置,解决 eslint 和 prettier 插件的一些冲突问题
+
+### npm run eject
+
+暴露 create app 内部配置，方便修改
+
+### 安装 antd，并配置按需加载
+
+npm i babel-plugin-import --save-dev
+方式一 重写.babelrc,需要将 package.json 里将 babel 选项剔除掉
+方式二 直接在 package.json 里添加
+"plugins": [
+["import", {
+"libraryName": "antd",
+"libraryDirectory": "es",
+"style": "css" // `style: true` 会加载 less 文件
+}]
+]
+
+### 其他方式
+
+安装 react-app-rewired customize-cra 并在 package.json 里修改配置
+新建 config-overrides.js

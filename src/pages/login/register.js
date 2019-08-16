@@ -22,7 +22,7 @@ class Register extends React.Component {
       hobby: this.state.hobby
     }
     axios
-      .post('/register', params)
+      .post(`${this.props.host}/register`, params)
       .then(function(response) {
         // handle success
         console.log(response)

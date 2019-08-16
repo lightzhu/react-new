@@ -1,5 +1,4 @@
 const result = (state = { data: [1, 2] }, action) => {
-  console.log(action.data)
   switch (action.type) {
     case 'GET_NEWS':
       return action.data

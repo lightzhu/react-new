@@ -2,7 +2,7 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.2.88:9090",
+  "proxy": "http://192.168.2.71:8080",
   "proxy1": "http://tfboy.gearhostpreview.com",
   "dependencies": {
     "@babel/core": "7.4.3",
@@ -54,6 +54,7 @@
     "react-copy-to-clipboard": "^5.0.1",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
+    "react-infinite-scroller": "^1.2.4",
     "react-lazyload": "^2.6.2",
     "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
@@ -142,6 +143,20 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "es",
+          "style": "css"
+        }
+      ]
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.12.0",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }

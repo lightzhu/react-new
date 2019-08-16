@@ -1,9 +1,11 @@
 import React from 'react'
-import { Affix } from 'antd'
+import { Affix, Select } from 'antd'
 import '../../style/home.scss'
 import { connect } from 'react-redux'
 import { getNewsInfo } from '../../actions/Index'
 import Aticle from './article'
+const Option = Select.Option
+
 class News extends React.Component {
   constructor(props) {
     super(props)
@@ -62,9 +64,16 @@ class News extends React.Component {
         <Affix>
           <h2>今日要闻</h2>
         </Affix>
-        <select onChange={this.newTypeChange.bind(this)}>
-          {this.renderSelect(this.state.newsType)}
-        </select>
+        <div style={{ textAlign: 'center' }}>
+          <Select
+            defaultValue={this.state.newsType[0].name}
+            onChange={this.newTypeChange.bind(this)}
+            style={{ width: 190, marginTop: 10 }}
+          >
+            {this.renderSelect(this.state.newsType)}
+          </Select>
+        </div>
+
         <div className="news-box">
           <Aticle content={this.props.data} title="fdjdsfjkh" />
         </div>
@@ -79,18 +88,17 @@ class News extends React.Component {
     let arr = []
     types.forEach((element, index) => {
       arr.push(
-        <option key={index} value={element.val}>
+        <Option key={index} value={element.val}>
           {element.name}
-        </option>
+        </Option>
       )
     })
     return arr
   }
-  newTypeChange(e) {
-    console.log(e.target.value)
+  newTypeChange(value) {
     this.setState(
       {
-        type: e.target.value
+        type: value
       },
       () => {
         this.props.getInitData(this.state.type)

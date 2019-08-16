@@ -1,7 +1,6 @@
 import React from 'react'
 // import axios from 'axios'
 import './App.css'
-import 'antd/dist/antd.css'
 import { Router, Route, Redirect } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import Home from './pages/home/home'
@@ -21,7 +20,8 @@ class App extends React.Component {
     this.state = {
       userName: '',
       pwd: '',
-      loggedIn: false
+      loggedIn: false,
+      apiHost: 'https://imov.herokuapp.com'
     }
   }
 
@@ -44,7 +44,7 @@ class App extends React.Component {
     history.push('/home', { some: 'state' })
   }
   render() {
-    const { loggedIn } = this.state
+    const { loggedIn, apiHost } = this.state
     return (
       <div className="App">
         <Router history={history}>
@@ -63,27 +63,35 @@ class App extends React.Component {
               loggedIn ? (
                 <Redirect to="/dashboard" />
               ) : (
-                <Login router={history} />
+                <Home router={history} host={apiHost} />
               )
             }
           />
           <Route
             path="/login"
             exact
-            render={() => <Login router={history} />}
+            render={() => <Login router={history} host={apiHost} />}
           />
-          <Route path="/home" exact render={() => <Home router={history} />} />
+          <Route
+            path="/home"
+            exact
+            render={() => <Home router={history} host={apiHost} />}
+          />
           <Route
             path="/register"
             exact
-            render={() => <Register router={history} />}
+            render={() => <Register router={history} host={apiHost} />}
           />
           <Route
             path="/Weather"
             exact
-            render={() => <Weather router={history} />}
+            render={() => <Weather router={history} host={apiHost} />}
           />
-          <Route path="/News" exact render={() => <News router={history} />} />
+          <Route
+            path="/News"
+            exact
+            render={() => <News router={history} host={apiHost} />}
+          />
         </Router>
       </div>
     )

@@ -1,15 +1,20 @@
 import React from 'react'
 import axios from 'axios'
 import LazyLoad from 'react-lazyload'
-import { List, Avatar, Button, Skeleton, Affix } from 'antd'
+import { List, Avatar, Button, Affix, Spin } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import InfiniteScroll from 'react-infinite-scroller'
 import '../../style/home.scss'
+// import { thisTypeAnnotation } from '@babel/types'
 class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       data: [{}, {}, {}],
-      loading: true
+      pageNum: 0,
+      pageSize: 20,
+      loading: true,
+      hasMore: true
     }
   }
   gotoDetail(data) {
@@ -49,68 +54,105 @@ class Home extends React.Component {
       )
     }
   }
+  movieLoad() {
+    console.log('90')
+    if (this.state.hasMore) {
+      this.getMovieList()
+    }
+  }
   render() {
-    const { data, loading } = this.state
+    const { data, hasMore, loading } = this.state
     return (
       <div className="home">
         <Affix>
           <h2>聚合电影</h2>
         </Affix>
-        <List
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={item => (
-            <List.Item>
-              {/* <List.Item.Meta
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={this.movieLoad.bind(this)}
+          hasMore={hasMore}
+          initialLoad={false}
+          threshold={80}
+          loader={<div className="loader" key={0} />}
+        >
+          <List
+            itemLayout="horizontal"
+            dataSource={data}
+            renderItem={item => (
+              <List.Item>
+                {/* <List.Item.Meta
                 avatar={<Avatar className="avatar" src={item.postUrl} />}
                 title={
                   <a href="http://tfboy.gearhostpreview.com">{item.title}</a>
                 }
                 description={item.btUrl}
               /> */}
-              {this.renderBtn(item.type, item.btUrl)}
+                {this.renderBtn(item.type, item.btUrl)}
 
-              <LazyLoad>
-                <Skeleton loading={loading} active avatar>
+                <LazyLoad>
                   <List.Item.Meta
                     avatar={<Avatar className="avatar" src={item.postUrl} />}
-                    title={
-                      <a href="http://tfboy.gearhostpreview.com">
-                        {item.title}
-                      </a>
-                    }
+                    title={<a href="http://imov.herokuapp.com">{item.title}</a>}
                     description={item.btUrl}
                   />
-                </Skeleton>
-              </LazyLoad>
-            </List.Item>
-          )}
-        />
+                </LazyLoad>
+              </List.Item>
+            )}
+          />
+          <div className="loader">
+            <Spin spinning={loading} />
+          </div>
+        </InfiniteScroll>
       </div>
     )
   }
   componentDidMount() {
+    this.getMovieList()
+  }
+  getMovieList() {
     let that = this
-    axios
-      .get('/get_movies')
-      .then(function(response) {
-        console.log(response)
-        let list = response.data.data
-        if (list) {
-          that.setState(
-            {
-              data: list
-            },
-            function() {
-              this.setState({ loading: false })
+    let { pageNum, pageSize } = this.state
+    that.setState(
+      {
+        loading: true,
+        hasMore: false
+      },
+      () => {
+        axios
+          .get(`${this.props.host}/get_movies?page=${pageNum}&size=${pageSize}`)
+          .then(function(response) {
+            console.log(response)
+            let list = response.data.data
+            if (pageNum === 0) {
+              if (list) {
+                that.setState({
+                  data: list
+                })
+              }
+            } else {
+              if (list) {
+                that.setState({
+                  data: that.state.data.concat(list)
+                })
+              }
             }
-          )
-        }
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-      .finally(function() {})
+            if (list.length < pageSize) {
+              that.setState({
+                hasMore: false
+              })
+            }
+            that.setState({
+              loading: false,
+              pageNum: pageNum + 1,
+              hasMore: true
+            })
+          })
+          .catch(function(error) {
+            console.log(error)
+          })
+          .finally(function() {})
+      }
+    )
   }
 }
 

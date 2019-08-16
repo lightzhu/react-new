@@ -19,7 +19,7 @@ class Login extends React.Component {
     }
     let that = this
     axios
-      .post('/login', params)
+      .post(`${this.props.host}/login`, params)
       .then(function(response) {
         // handle success
         console.log(response)

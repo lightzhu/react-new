@@ -4,6 +4,7 @@ const path = require('path')
 const webpack = require('webpack')
 const resolve = require('resolve')
 const PnpWebpackPlugin = require('pnp-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
@@ -46,6 +47,8 @@ const sassModuleRegex = /\.module\.(scss|sass)$/
 module.exports = function(webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development'
   const isEnvProduction = webpackEnv === 'production'
+  // const isEnvDevelopment = false
+  // const isEnvProduction = true
 
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -176,6 +179,19 @@ module.exports = function(webpackEnv) {
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
+        new UglifyJSPlugin({
+          uglifyOptions: {
+            output: {
+              comments: false
+            },
+            warnings: false,
+            extractComments: true,
+            compress: {
+              drop_debugger: true,
+              drop_console: true
+            }
+          }
+        }),
         // This is only used in production mode
         new TerserPlugin({
           terserOptions: {
