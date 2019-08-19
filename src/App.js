@@ -2,13 +2,14 @@ import React from 'react'
 // import axios from 'axios'
 import './App.css'
 import { Router, Route, Redirect } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
+import { createHashHistory } from 'history'
 import Home from './pages/home/home'
 import Login from './pages/login/login'
 import Register from './pages/login/register'
 import Weather from './pages/weather/weather'
 import News from './pages/news/news'
-const history = createBrowserHistory()
+// const history = createBrowserHistory()
+const history = createHashHistory()
 // const location = history.location
 // const unlisten = history.listen((location, action) => {
 //   console.log(action, location.pathname, location.state)

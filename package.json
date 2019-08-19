@@ -5,6 +5,7 @@
   "proxy": "http://192.168.2.71:8080",
   "proxy1": "http://tfboy.gearhostpreview.com",
   "homepage": "https://lightzhu.github.io/react-new",
+  "homepage2": ".",
   "dependencies": {
     "@babel/core": "7.4.3",
     "@svgr/webpack": "4.1.0",
@@ -152,10 +153,7 @@
       [
         "import",
         {
-          "libraryName": [
-            "antd",
-            "antd-mobile"
-          ],
+          "libraryName": "antd",
           "libraryDirectory": "es",
           "style": "css"
         }
