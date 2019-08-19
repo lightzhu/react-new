@@ -21,8 +21,9 @@ export const divide = nums => ({
 })
 export const getWeatherInfo = city => {
   return dispatch => {
+    //https://imov.herokuapp.com
     axios
-      .get(`https://imov.herokuapp.com/get_weatherInfo?city=${city}`)
+      .get(`/get_weatherInfo?city=${city}`)
       .then(function(response) {
         dispatch({
           type: 'GET_WEATHER',
@@ -38,11 +39,11 @@ export const getWeatherInfo = city => {
 export const getNewsInfo = type => {
   return dispatch => {
     axios
-      .get(`https://imov.herokuapp.com/get_news?type=${type}`)
+      .get(`/get_news?type=${type}`)
       .then(function(response) {
         dispatch({
           type: 'GET_NEWS',
-          data: response.data.data
+          data: response.data
         })
       })
       .catch(function(error) {

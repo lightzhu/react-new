@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Input, Form, Button, Icon } from 'antd'
-import message from 'antd/es/message'
+import { Input, Form, Button, Icon, message } from 'antd'
 import md5 from 'blueimp-md5'
 class Login extends React.Component {
   constructor(props) {

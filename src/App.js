@@ -21,7 +21,8 @@ class App extends React.Component {
       userName: '',
       pwd: '',
       loggedIn: false,
-      apiHost: 'https://imov.herokuapp.com'
+      // apiHost: 'https://imov.herokuapp.com'
+      apiHost: ''
     }
   }
 

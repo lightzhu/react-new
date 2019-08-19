@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import Input from 'antd/es/input' // 加载 JS
-import Form from 'antd/es/form'
-import Button from 'antd/es/button'
-import Icon from 'antd/es/icon'
+import { Input, Form, Button, Icon } from 'antd'
+// import Input from 'antd/es/input' // 加载 JS
 import md5 from 'blueimp-md5'
 class Register extends React.Component {
   constructor(props) {

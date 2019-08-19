@@ -1,8 +1,6 @@
 import React from 'react'
 import { List, Avatar } from 'antd'
-// import '../../style/weather.scss'
-// import store from '../../reducers/store'
-// import { getWeatherInfo } from '../../actions/Index'
+import '../../style/news.scss'
 const Aticle = list => {
   return (
     <div>

@@ -81,7 +81,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 暴露 create app 内部配置，方便修改
 
-### 安装 antd，并配置按需加载
+### 安装 antd，并配置按需加载(安装 antd-mobile 是同样道理)
 
 npm i babel-plugin-import --save-dev
 方式一 重写.babelrc,需要将 package.json 里将 babel 选项剔除掉
@@ -98,3 +98,9 @@ npm i babel-plugin-import --save-dev
 
 安装 react-app-rewired customize-cra 并在 package.json 里修改配置
 新建 config-overrides.js
+
+### 关于 npm run build
+
+将 package.json 的 homepage 配置成‘.’,代表将当前页面打包到相对路径下面，默认为‘’
+
+将 package.json 的 homepage 配置成‘https://lightzhu.github.io/项目名’,代表将当前页面打homepage下面的文件夹
