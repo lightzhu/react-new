@@ -1,11 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import LazyLoad from 'react-lazyload'
+import { connect } from 'react-redux'
 import { List, Avatar, Button, Affix, Spin } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import InfiniteScroll from 'react-infinite-scroller'
+import { getWeatherInfo } from '../../actions/Index'
+import Weather from '../../components/Weather'
 import '../../style/home.scss'
 // import { thisTypeAnnotation } from '@babel/types'
+axios.defaults.timeout = 60000 * 2
 class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -14,7 +18,8 @@ class Home extends React.Component {
       pageNum: 0,
       pageSize: 20,
       loading: true,
-      hasMore: true
+      hasMore: true,
+      city: '宁波'
     }
   }
   gotoDetail(data) {
@@ -36,7 +41,7 @@ class Home extends React.Component {
             className="tool-button"
             onClick={this.gotoDetail.bind(this, url)}
           >
-            点击查看详情
+            查看详情
           </Button>
         </CopyToClipboard>
       )
@@ -48,7 +53,7 @@ class Home extends React.Component {
             className="tool-button"
             onClick={this.cloneBtUrl.bind(this, url)}
           >
-            点击复制下载链接
+            复制下载
           </Button>
         </CopyToClipboard>
       )
@@ -65,7 +70,7 @@ class Home extends React.Component {
     return (
       <div className="home">
         <Affix>
-          <h2>聚合电影</h2>
+          <Weather weatherInfo={this.props.weatherInfo} />
         </Affix>
         <InfiniteScroll
           pageStart={0}
@@ -108,6 +113,7 @@ class Home extends React.Component {
   }
   componentDidMount() {
     this.getMovieList()
+    this.props.getWeatherInfo(this.state.city)
   }
   getMovieList() {
     let that = this
@@ -155,5 +161,20 @@ class Home extends React.Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    weatherInfo: state.weather.data
+  }
+}
 
-export default Home
+const mapDispatchToProps = dispatch => {
+  return {
+    getWeatherInfo: city => {
+      dispatch(getWeatherInfo(city))
+    }
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)

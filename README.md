@@ -110,3 +110,7 @@ npm i babel-plugin-import --save-dev
 git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
+
+### 通过 gh-pages -d build 的方式部署项目能请求到青苔资源而不能执行 js 的问题
+
+更改 history: 将 BrowserHistory 为 HashHistory

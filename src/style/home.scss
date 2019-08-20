@@ -18,8 +18,10 @@
       position: relative;
       .ant-btn{
         position: absolute;
-        right:15px;
-        bottom:8px;
+        right:5px;
+        top:6px;
+        height: 28px;
+        line-height: 28px;
       }
     }
   }
@@ -40,4 +42,34 @@
   text-align: center;
   margin-bottom: 20px;
   margin: 20px 0;
+}
+.home{
+  .computer-box{
+    display: flex;
+    span{
+      line-height: 40px;
+    }
+    .other{
+      font-size:14px;
+      line-height: 30px;
+    }
+  }
+  .real-time{
+    width: 50%;
+  }
+  .weather-list{
+    width: 50%;
+    height: 70px;
+    overflow: hidden;
+  }
+  .am-wingblank{
+    margin:0;
+  }
+  .v-item{
+    font-size:14px;
+    padding-top:10px;
+    line-height: 25px;
+    height: 70px;
+    overflow: hidden;
+  }
 }

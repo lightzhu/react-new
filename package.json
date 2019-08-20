@@ -145,21 +145,6 @@
       "jest-watch-typeahead/testname"
     ]
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      [
-        "import",
-        {
-          "libraryName": "antd",
-          "libraryDirectory": "es",
-          "style": "css"
-        }
-      ]
-    ]
-  },
   "devDependencies": {
     "babel-plugin-import": "^1.12.0",
     "gh-pages": "^2.1.1",
