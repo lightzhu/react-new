@@ -65,12 +65,19 @@ class Home extends React.Component {
       this.getMovieList()
     }
   }
+  cityChange(city) {
+    console.log(city)
+    this.props.getWeatherInfo(city)
+  }
   render() {
     const { data, hasMore, loading } = this.state
     return (
       <div className="home">
         <Affix>
-          <Weather weatherInfo={this.props.weatherInfo} />
+          <Weather
+            weatherInfo={this.props.weatherInfo}
+            cityChange={this.cityChange.bind(this)}
+          />
         </Affix>
         <InfiniteScroll
           pageStart={0}

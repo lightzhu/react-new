@@ -4,7 +4,7 @@
     font-size:24px;
     margin: 0;
     line-height:50px;
-    background: skyblue;
+    background: #25ade4;
     text-align: center;
   }
   .avatar{
@@ -46,6 +46,7 @@
 .home{
   .computer-box{
     display: flex;
+    position: relative;
     span{
       line-height: 40px;
     }
@@ -54,8 +55,33 @@
       line-height: 30px;
     }
   }
+  .location{
+    width: 20px;
+    top:0;
+    left:0;
+    position: absolute;
+    z-index: 10;
+    background: #25ade4;
+    font-size:16px;
+    color:#fff;
+    line-height: 1.5;
+    div{
+      background: transparent;
+    }
+    .city{
+      padding-top:5px;
+      width: 200%;
+      overflow: hidden;
+      span{
+        font-size:12px;
+        display: block;
+        margin-top:-3px;
+      }
+    }
+  }
   .real-time{
     width: 50%;
+    padding-left:28px;
   }
   .weather-list{
     width: 50%;
