@@ -40,3 +40,8 @@
   align-items: center;
   padding:0 30px;
 }
+
+@keyframes regist{
+  from {left: 0;}
+  to {left: 18px;}
+}

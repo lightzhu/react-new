@@ -25,8 +25,8 @@ class App extends React.Component {
       pwd: '',
       loggedIn: false,
       // apiHost: 'https://imov.herokuapp.com',
-      apiHost: 'https://tfboy.gearhostpreview.com',
-      // apiHost: '',
+      // apiHost: 'https://tf8app.gearhostpreview.com/',
+      apiHost: '',
       tabHidden: false,
       selectedTab: 'mov'
     }
@@ -196,9 +196,9 @@ class App extends React.Component {
               }}
             >
               {loggedIn ? (
-                <Login host={apiHost} />
-              ) : (
                 <Register host={apiHost} />
+              ) : (
+                <Login host={apiHost} />
               )}
             </TabBar.Item>
           </TabBar>

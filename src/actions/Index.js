@@ -21,7 +21,7 @@ export const divide = nums => ({
 })
 export const getWeatherInfo = city => {
   return dispatch => {
-    //https://imov.herokuapp.com
+    //https://imov.herokuapp.com  https://tf8app.gearhostpreview.com
     axios
       .get(`/get_weatherInfo?city=${city}`)
       .then(function(response) {

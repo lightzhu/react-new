@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Input, Form, Button, Icon, message } from 'antd'
 import md5 from 'blueimp-md5'
+import '../../style/mine.scss'
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -55,6 +56,7 @@ class Login extends React.Component {
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Username"
               value={this.state.userName}
+              size="large"
               onChange={this.handleUserInput.bind(this)}
             />
           </Form.Item>
@@ -62,17 +64,28 @@ class Login extends React.Component {
             <Input
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
+              size="large"
               placeholder="Password"
               value={this.state.pwd}
               onChange={this.handlePwdInput.bind(this)}
             />
           </Form.Item>
           <Button
+            size="large"
             type="primary"
             htmlType="submit"
             className="login-form-button"
           >
             登陆
+          </Button>
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            className="login-form-button"
+          >
+            创建账号
+            <Icon type="arrow-right" className="animate" />
           </Button>
         </Form>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Affix, Select } from 'antd'
+import { Select } from 'antd'
 import '../../style/home.scss'
 import { connect } from 'react-redux'
 import { getNewsInfo } from '../../actions/Index'
@@ -61,9 +61,6 @@ class News extends React.Component {
     // const { weatherInfo } = this.state
     return (
       <div className="news">
-        <Affix>
-          <h2>今日要闻</h2>
-        </Affix>
         <div style={{ textAlign: 'center' }}>
           <Select
             defaultValue={this.state.newsType[0].name}

@@ -1,15 +1,18 @@
 import React from 'react'
 import axios from 'axios'
-import { Input, Form, Button, Icon } from 'antd'
+import { Input, Form, Button, Icon, Radio } from 'antd'
 // import Input from 'antd/es/input' // 加载 JS
 import md5 from 'blueimp-md5'
+import '../../style/mine.scss'
 class Register extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       userName: '',
       pwd: '',
-      hobby: ''
+      hobby: '',
+      gender: '男',
+      region: ''
     }
   }
   handleSubmit(e) {
@@ -43,9 +46,20 @@ class Register extends React.Component {
       pwd: e.target.value
     })
   }
+  handleRegionInput(e) {
+    this.setState({
+      region: e.target.value
+    })
+  }
   handleHobbyInput(e) {
     this.setState({
       hobby: e.target.value
+    })
+  }
+  onGenderChange(e) {
+    debugger
+    this.setState({
+      gender: e.target.value
     })
   }
   render() {
@@ -55,7 +69,7 @@ class Register extends React.Component {
           <Form.Item>
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
+              placeholder="昵称"
               value={this.state.userName}
               onChange={this.handleUserInput.bind(this)}
             />
@@ -64,7 +78,7 @@ class Register extends React.Component {
             <Input
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
-              placeholder="Password"
+              placeholder="密码"
               value={this.state.pwd}
               onChange={this.handlePwdInput.bind(this)}
             />
@@ -74,13 +88,34 @@ class Register extends React.Component {
               prefix={
                 <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.25)' }} />
               }
-              placeholder="喜欢的电影类型"
+              placeholder="地区"
+              value={this.state.region}
+              onChange={this.handleRegionInput.bind(this)}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              prefix={
+                <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.25)' }} />
+              }
+              placeholder="兴趣爱好"
               value={this.state.hobby}
               onChange={this.handleHobbyInput.bind(this)}
             />
           </Form.Item>
+          <Form.Item>
+            <Radio.Group
+              onChange={this.onGenderChange.bind(this)}
+              value={this.state.gender}
+            >
+              <Radio value="女">女的</Radio>
+              <Radio value="男">男的</Radio>
+            </Radio.Group>
+          </Form.Item>
+
           <Button
             type="primary"
+            size="large"
             htmlType="submit"
             className="login-form-button"
           >

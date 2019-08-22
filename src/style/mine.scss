@@ -1,0 +1,22 @@
+.reg,.login{
+  height: 100%;
+}
+.App .login-form{
+  height: 100%;
+}
+.ant-form-item{
+  margin-bottom:15px;
+  width: 68%;
+}
+
+.login{
+  .login-form-button{
+    width: 68%;
+    margin-bottom:8px;
+  }
+  .animate{
+    position: relative;
+    left:0;
+    animation: regist 0.8s infinite;
+  }
+}
