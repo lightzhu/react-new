@@ -112,15 +112,24 @@ class Register extends React.Component {
               <Radio value="男">男的</Radio>
             </Radio.Group>
           </Form.Item>
-
-          <Button
-            type="primary"
-            size="large"
-            htmlType="submit"
-            className="login-form-button"
-          >
-            注册
-          </Button>
+          <div className="btn-box">
+            <Button
+              type="primary"
+              size="large"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              注册
+            </Button>
+            <Button
+              type="primary"
+              size="large"
+              onClick={this.props.goLogin}
+              className="login-form-button"
+            >
+              已有账号
+            </Button>
+          </div>
         </Form>
       </div>
     )

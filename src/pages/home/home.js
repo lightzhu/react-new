@@ -1,12 +1,13 @@
 import React from 'react'
 import axios from 'axios'
-import LazyLoad from 'react-lazyload'
+// import LazyLoad from 'react-lazyload'
 import { connect } from 'react-redux'
-import { List, Avatar, Button, Affix, Spin } from 'antd'
+import { List, Avatar, Button, Spin } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import InfiniteScroll from 'react-infinite-scroller'
 import { getWeatherInfo } from '../../actions/Index'
 import Weather from '../../components/Weather'
+import { message } from 'antd'
 import '../../style/home.scss'
 // import { thisTypeAnnotation } from '@babel/types'
 axios.defaults.timeout = 60000 * 2
@@ -60,7 +61,6 @@ class Home extends React.Component {
     }
   }
   movieLoad() {
-    console.log('90')
     if (this.state.hasMore) {
       this.getMovieList()
     }
@@ -72,19 +72,21 @@ class Home extends React.Component {
   render() {
     const { data, hasMore, loading } = this.state
     return (
-      <div className="home">
-        <Affix>
-          <Weather
-            weatherInfo={this.props.weatherInfo}
-            cityChange={this.cityChange.bind(this)}
-          />
-        </Affix>
+      <div
+        className="home"
+        style={{ height: 'calc(100vh - 50px)', overflow: 'auto' }}
+      >
+        <Weather
+          weatherInfo={this.props.weatherInfo}
+          cityChange={this.cityChange.bind(this)}
+        />
         <InfiniteScroll
           pageStart={0}
           loadMore={this.movieLoad.bind(this)}
           hasMore={hasMore}
           initialLoad={false}
-          threshold={80}
+          threshold={60}
+          useWindow={false}
           loader={<div className="loader" key={0} />}
         >
           <List
@@ -92,22 +94,12 @@ class Home extends React.Component {
             dataSource={data}
             renderItem={item => (
               <List.Item>
-                {/* <List.Item.Meta
-                avatar={<Avatar className="avatar" src={item.postUrl} />}
-                title={
-                  <a href="http://tfboy.gearhostpreview.com">{item.title}</a>
-                }
-                description={item.btUrl}
-              /> */}
                 {this.renderBtn(item.type, item.btUrl)}
-
-                <LazyLoad>
-                  <List.Item.Meta
-                    avatar={<Avatar className="avatar" src={item.postUrl} />}
-                    title={<a href="http://imov.herokuapp.com">{item.title}</a>}
-                    description={item.btUrl}
-                  />
-                </LazyLoad>
+                <List.Item.Meta
+                  avatar={<Avatar className="avatar" src={item.postUrl} />}
+                  title={<a href="http://imov.herokuapp.com">{item.title}</a>}
+                  description={item.btUrl}
+                />
               </List.Item>
             )}
           />
@@ -151,17 +143,20 @@ class Home extends React.Component {
             }
             if (list.length < pageSize) {
               that.setState({
-                hasMore: false
+                hasMore: false,
+                loading: false
+              })
+            } else {
+              that.setState({
+                loading: true,
+                pageNum: pageNum + 1,
+                hasMore: true
               })
             }
-            that.setState({
-              loading: false,
-              pageNum: pageNum + 1,
-              hasMore: true
-            })
           })
           .catch(function(error) {
             console.log(error)
+            message.info('请求失败，请刷新', 3)
           })
           .finally(function() {})
       }

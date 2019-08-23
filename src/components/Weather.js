@@ -33,7 +33,7 @@ class Weather extends React.Component {
     const { weatherInfo } = this.props
     // console.log(weatherInfo)
     return (
-      <div className="home">
+      <div>
         <Affix>
           <h2>
             <div className="location">

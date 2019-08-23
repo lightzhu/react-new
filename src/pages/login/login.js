@@ -1,8 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import { Input, Form, Button, Icon, message } from 'antd'
+import Register from './register'
+
 import md5 from 'blueimp-md5'
+import { Router, Route, Redirect } from 'react-router-dom'
+import { createHashHistory } from 'history'
 import '../../style/mine.scss'
+// const location = history.location
+const history = createHashHistory()
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -47,6 +53,9 @@ class Login extends React.Component {
       pwd: e.target.value
     })
   }
+  // gotoRegister() {
+  //   history.push('/register')
+  // }
   render() {
     return (
       <div className="login">
@@ -81,7 +90,7 @@ class Login extends React.Component {
           <Button
             type="primary"
             size="large"
-            htmlType="submit"
+            onClick={this.props.register}
             className="login-form-button"
           >
             创建账号

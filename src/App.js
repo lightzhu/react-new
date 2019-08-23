@@ -3,8 +3,7 @@ import React from 'react'
 import './App.css'
 import { TabBar } from 'antd-mobile'
 import Home from './pages/home/home'
-import Login from './pages/login/login'
-import Register from './pages/login/register'
+import Mine from './pages/mine/index'
 import Weather from './pages/weather/weather'
 import News from './pages/news/news'
 
@@ -51,7 +50,7 @@ class App extends React.Component {
     // history.push('/home', { some: 'state' })
   }
   render() {
-    const { loggedIn, apiHost } = this.state
+    const { apiHost } = this.state
     return (
       <div className="App">
         {/* <Router history={history}>
@@ -195,11 +194,7 @@ class App extends React.Component {
                 })
               }}
             >
-              {loggedIn ? (
-                <Register host={apiHost} />
-              ) : (
-                <Login host={apiHost} />
-              )}
+              <Mine host={apiHost} />
             </TabBar.Item>
           </TabBar>
         </div>
