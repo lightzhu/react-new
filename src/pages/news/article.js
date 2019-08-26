@@ -9,7 +9,9 @@ const Aticle = list => {
         renderItem={item => (
           <List.Item>
             <List.Item.Meta
-              avatar={<Avatar src={item.thumbnail_pic_s} />}
+              avatar={
+                <Avatar src={item.thumbnail_pic_s.replace(/http/, 'https')} />
+              }
               title={<a href={item.url}>{item.title}</a>}
               description={item.date + item.author_name}
             />

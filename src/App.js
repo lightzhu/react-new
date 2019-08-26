@@ -23,9 +23,9 @@ class App extends React.Component {
       userName: '',
       pwd: '',
       loggedIn: false,
-      // apiHost: 'https://imov.herokuapp.com',
+      apiHost: 'https://imov.herokuapp.com',
       // apiHost: 'https://tf8app.gearhostpreview.com/',
-      apiHost: '',
+      // apiHost: '',
       tabHidden: false,
       selectedTab: 'mov'
     }

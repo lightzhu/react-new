@@ -96,7 +96,12 @@ class Home extends React.Component {
               <List.Item>
                 {this.renderBtn(item.type, item.btUrl)}
                 <List.Item.Meta
-                  avatar={<Avatar className="avatar" src={item.postUrl} />}
+                  avatar={
+                    <Avatar
+                      className="avatar"
+                      src={item.postUrl.replace(/http/, 'https')}
+                    />
+                  }
                   title={<a href="http://imov.herokuapp.com">{item.title}</a>}
                   description={item.btUrl}
                 />

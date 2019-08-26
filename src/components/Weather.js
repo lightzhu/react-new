@@ -1,5 +1,4 @@
 import React from 'react'
-import { Affix } from 'antd'
 import { Carousel, WingBlank, Picker, List } from 'antd-mobile'
 import district from '../static/js/area'
 import '../style/weather.scss'
@@ -34,37 +33,35 @@ class Weather extends React.Component {
     // console.log(weatherInfo)
     return (
       <div>
-        <Affix>
-          <h2>
-            <div className="location">
-              <List>
-                <Picker
-                  title="选择地区"
-                  extra="请选择(可选)"
-                  data={district}
-                  value={this.state.pickerValue}
-                  onChange={v => this.setState({ pickerValue: v })}
-                  onOk={this.pickerValueOk.bind(this)}
+        <h2>
+          <div className="location">
+            <List>
+              <Picker
+                title="选择地区"
+                extra="请选择(可选)"
+                data={district}
+                value={this.state.pickerValue}
+                onChange={v => this.setState({ pickerValue: v })}
+                onOk={this.pickerValueOk.bind(this)}
+              >
+                <div
+                  className="city"
+                  onClick={this.props.onClick}
+                  style={{ height: 70, background: 'none' }}
                 >
-                  <div
-                    className="city"
-                    onClick={this.props.onClick}
-                    style={{ height: 70, background: 'none' }}
-                  >
-                    {this.state.city}
-                    <span>切换</span>
-                  </div>
-                </Picker>
-              </List>
+                  {this.state.city}
+                  <span>切换</span>
+                </div>
+              </Picker>
+            </List>
+          </div>
+          <div className="computer-box">
+            {weatherInfo ? this.renderWeather(weatherInfo.realtime) : ''}
+            <div className="weather-list">
+              {weatherInfo ? this.renderList(weatherInfo.future) : ''}
             </div>
-            <div className="computer-box">
-              {weatherInfo ? this.renderWeather(weatherInfo.realtime) : ''}
-              <div className="weather-list">
-                {weatherInfo ? this.renderList(weatherInfo.future) : ''}
-              </div>
-            </div>
-          </h2>
-        </Affix>
+          </div>
+        </h2>
       </div>
     )
   }

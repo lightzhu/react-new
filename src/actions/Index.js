@@ -23,7 +23,7 @@ export const getWeatherInfo = city => {
   return dispatch => {
     //https://imov.herokuapp.com  https://tf8app.gearhostpreview.com
     axios
-      .get(`/get_weatherInfo?city=${city}`)
+      .get(`https://imov.herokuapp.com/get_weatherInfo?city=${city}`)
       .then(function(response) {
         dispatch({
           type: 'GET_WEATHER',
@@ -39,7 +39,7 @@ export const getWeatherInfo = city => {
 export const getNewsInfo = type => {
   return dispatch => {
     axios
-      .get(`/get_news?type=${type}`)
+      .get(`https://imov.herokuapp.com/get_news?type=${type}`)
       .then(function(response) {
         dispatch({
           type: 'GET_NEWS',
