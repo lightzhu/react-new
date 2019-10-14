@@ -101,9 +101,13 @@ npm i babel-plugin-import --save-dev
 
 ### 关于 npm run build
 
+执行 build 命令
+
 将 package.json 的 homepage 配置成‘.’,代表将当前页面打包到相对路径下面，默认为‘’
 
 将 package.json 的 homepage 配置成‘https://lightzhu.github.io/项目名’,代表将当前页面打homepage下面的文件夹
+
+然后再执行一次部署 npm run deploy
 
 ### 三步解决.gitignore 文件不生效的问题
 

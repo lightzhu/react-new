@@ -13,8 +13,8 @@ const Aticle = list => {
                 <Avatar
                   src={
                     item.thumbnail_pic_s
-                      ? item.thumbnail_pic_s.replace(/http/, 'https')
-                      : ''
+                      ? item.thumbnail_pic_s
+                      : item.thumbnail_pic_s02
                   }
                 />
               }

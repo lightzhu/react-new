@@ -9,13 +9,14 @@ import { getWeatherInfo } from '../../actions/Index'
 import Weather from '../../components/Weather'
 import { message } from 'antd'
 import '../../style/home.scss'
+import logopic from '../../static/logo.png'
 // import { thisTypeAnnotation } from '@babel/types'
 axios.defaults.timeout = 60000 * 2
 class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [{}, {}, {}],
+      data: [{}],
       pageNum: 0,
       pageSize: 20,
       loading: true,
@@ -99,11 +100,7 @@ class Home extends React.Component {
                   avatar={
                     <Avatar
                       className="avatar"
-                      src={
-                        item.postUrl
-                          ? item.postUrl.replace(/http/, 'https')
-                          : ''
-                      }
+                      src={item.postUrl ? item.postUrl : logopic}
                     />
                   }
                   title={<a href="http://imov.herokuapp.com">{item.title}</a>}
