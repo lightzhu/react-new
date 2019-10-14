@@ -1,4 +1,4 @@
 export default {
-  // apiHost: 'https://imov.herokuapp.com'
-  apiHost: ''
+  apiHost: 'https://imov.herokuapp.com'
+  // apiHost: ''
 }
