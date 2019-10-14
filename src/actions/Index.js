@@ -1,4 +1,7 @@
 import axios from 'axios'
+import global from '../global'
+const apiHost = global.apiHost
+
 export const plus = nums => ({
   type: 'PLUS',
   num1: nums[0],
@@ -21,9 +24,8 @@ export const divide = nums => ({
 })
 export const getWeatherInfo = city => {
   return dispatch => {
-    //https://imov.herokuapp.com  https://tf8app.gearhostpreview.com
     axios
-      .get(`https://imov.herokuapp.com/get_weatherInfo?city=${city}`)
+      .get(`${apiHost}/get_weatherInfo?city=${city}`)
       .then(function(response) {
         dispatch({
           type: 'GET_WEATHER',
@@ -39,7 +41,7 @@ export const getWeatherInfo = city => {
 export const getNewsInfo = type => {
   return dispatch => {
     axios
-      .get(`https://imov.herokuapp.com/get_news?type=${type}`)
+      .get(`${apiHost}/get_news?type=${type}`)
       .then(function(response) {
         dispatch({
           type: 'GET_NEWS',

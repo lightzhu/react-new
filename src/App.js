@@ -6,15 +6,14 @@ import Home from './pages/home/home'
 import Mine from './pages/mine/index'
 import Weather from './pages/weather/weather'
 import News from './pages/news/news'
-
-// import { Router, Route, Redirect } from 'react-router-dom'
-// import { createHashHistory } from 'history'
+import global from './global'
+import { createHashHistory } from 'history'
 // const location = history.location
 // const unlisten = history.listen((location, action) => {
 //   console.log(action, location.pathname, location.state)
 // })
 // const history = createBrowserHistory()
-// const history = createHashHistory()
+const history = createHashHistory()
 
 class App extends React.Component {
   constructor(props) {
@@ -23,29 +22,29 @@ class App extends React.Component {
       userName: '',
       pwd: '',
       loggedIn: false,
-      apiHost: 'https://imov.herokuapp.com',
-      // apiHost: 'https://tf8app.gearhostpreview.com/',
-      // apiHost: '',
+      apiHost: global.apiHost,
       tabHidden: false,
-      selectedTab: 'mov'
+      selectedTab: 'mov',
+      checkLogin: false
     }
   }
 
-  // getData() {
-  //   axios
-  //     .get('/get_movies')
-  //     .then(function(response) {
-  //       // handle success
-  //       console.log(response)
-  //     })
-  //     .catch(function(error) {
-  //       // handle error
-  //       console.log(error)
-  //     })
-  //     .finally(function() {
-  //       // always executed
-  //     })
-  // }
+  handleTabPress(selectTab) {
+    this.setState({
+      selectedTab: selectTab
+    })
+    history.push('/')
+    if (selectTab === 'mine') {
+      this.setState({
+        checkLogin: true
+      })
+    } else {
+      // debugger
+      this.setState({
+        checkLogin: false
+      })
+    }
+  }
   handleClick() {
     // history.push('/home', { some: 'state' })
   }
@@ -117,11 +116,7 @@ class App extends React.Component {
                 uri: `${require('./static/mov.png')}`
               }}
               selected={this.state.selectedTab === 'mov'}
-              onPress={() => {
-                this.setState({
-                  selectedTab: 'mov'
-                })
-              }}
+              onPress={this.handleTabPress.bind(this, 'mov')}
               data-seed="logId"
             >
               <Home host={apiHost} />
@@ -136,11 +131,7 @@ class App extends React.Component {
                 uri: `${require('./static/news.png')}`
               }}
               selected={this.state.selectedTab === 'hot'}
-              onPress={() => {
-                this.setState({
-                  selectedTab: 'hot'
-                })
-              }}
+              onPress={this.handleTabPress.bind(this, 'hot')}
               data-seed="logId1"
             >
               <News host={apiHost} />
@@ -168,11 +159,7 @@ class App extends React.Component {
               key="Friend"
               badge={1}
               selected={this.state.selectedTab === 'friend'}
-              onPress={() => {
-                this.setState({
-                  selectedTab: 'friend'
-                })
-              }}
+              onPress={this.handleTabPress.bind(this, 'friend')}
             >
               <Weather host={apiHost} />
             </TabBar.Item>
@@ -188,13 +175,9 @@ class App extends React.Component {
               title="我的"
               key="mine"
               selected={this.state.selectedTab === 'mine'}
-              onPress={() => {
-                this.setState({
-                  selectedTab: 'mine'
-                })
-              }}
+              onPress={this.handleTabPress.bind(this, 'mine')}
             >
-              <Mine host={apiHost} />
+              <Mine host={apiHost} checkLogin={this.state.checkLogin} />
             </TabBar.Item>
           </TabBar>
         </div>

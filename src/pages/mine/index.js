@@ -44,7 +44,13 @@ class Mine extends React.Component {
         <Route
           exact
           path="/"
-          render={() => <Me router={history} toLogin={this.toLogin} />}
+          render={() => (
+            <Me
+              checkLogin={this.props.checkLogin}
+              router={history}
+              toLogin={this.toLogin}
+            />
+          )}
         />
         <Route
           exact

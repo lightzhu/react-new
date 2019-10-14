@@ -99,7 +99,11 @@ class Home extends React.Component {
                   avatar={
                     <Avatar
                       className="avatar"
-                      src={item.postUrl.replace(/http/, 'https')}
+                      src={
+                        item.postUrl
+                          ? item.postUrl.replace(/http/, 'https')
+                          : ''
+                      }
                     />
                   }
                   title={<a href="http://imov.herokuapp.com">{item.title}</a>}

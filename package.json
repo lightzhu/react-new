@@ -2,8 +2,8 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.2.71:8080",
-  "proxy1": "http://tfboy.gearhostpreview.com",
+  "proxy1": "http://192.168.1.104:8080",
+  "proxy": "http://imov.herokuapp.com",
   "homepage": "https://lightzhu.github.io/react-new",
   "homepage2": ".",
   "dependencies": {

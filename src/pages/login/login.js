@@ -1,14 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import { Input, Form, Button, Icon, message } from 'antd'
-import Register from './register'
+// import Register from './register'
 
 import md5 from 'blueimp-md5'
-import { Router, Route, Redirect } from 'react-router-dom'
-import { createHashHistory } from 'history'
+// import { Router, Route, Redirect } from 'react-router-dom'
+// import { createHashHistory } from 'history'
 import '../../style/mine.scss'
 // const location = history.location
-const history = createHashHistory()
+// const history = createHashHistory()
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -101,7 +101,7 @@ class Login extends React.Component {
     )
   }
   componentDidMount() {
-    // console.log(this.props)
+    console.log(md5('e10adc3949ba59abbe56e057f20f883e'))
   }
 }
 
