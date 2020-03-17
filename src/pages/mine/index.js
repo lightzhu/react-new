@@ -5,7 +5,7 @@ import Login from '../login/login'
 import Register from '../login/register'
 
 // import md5 from 'blueimp-md5'
-import { Router, Route, Redirect } from 'react-router-dom'
+import { Router, Route } from 'react-router-dom'
 import { createHashHistory } from 'history'
 import '../../style/mine.scss'
 const history = createHashHistory()

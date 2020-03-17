@@ -4,8 +4,8 @@
   "private": true,
   "proxy": "http://192.168.1.109:9090",
   "proxy1": "http://imov.herokuapp.com",
-  "homepage": "https://lightzhu.github.io/react_imov",
-  "homepage2": ".",
+  "homepage1": "https://lightzhu.github.io/react_imov",
+  "homepage": ".",
   "dependencies": {
     "@babel/core": "7.4.3",
     "@svgr/webpack": "4.1.0",
