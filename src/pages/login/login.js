@@ -1,14 +1,9 @@
 import React from 'react'
-import axios from 'axios'
 import { Input, Form, Button, Icon, message } from 'antd'
-// import Register from './register'
-
+import fetch from '@/static/js/request'
+import { Toast } from 'antd-mobile'
 import md5 from 'blueimp-md5'
-// import { Router, Route, Redirect } from 'react-router-dom'
-// import { createHashHistory } from 'history'
 import '../../style/mine.scss'
-// const location = history.location
-// const history = createHashHistory()
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -23,24 +18,24 @@ class Login extends React.Component {
       userName: this.state.userName,
       pwd: md5(this.state.pwd)
     }
-    let that = this
-    axios
-      .post(`${this.props.host}/login`, params)
-      .then(function(response) {
+    // let that = this
+    Toast.loading('Loading...')
+    fetch('/login', 'post', params)
+      .then(function (response) {
         // handle success
         console.log(response)
-        let data = response.data
-        if (data.statue === 0) {
-          message.loading(data.msg, 0.1)
-          that.props.router.push('/home')
+        if (response.statue === 0) {
+          message.loading(response.msg, 0.1)
+          window.sessionStorage.setItem('logined', 'true')
+          window.location.hash = '/'
+        } else {
+          Toast.info(response.msg)
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // handle error
+        Toast.hide()
         console.log(error)
-      })
-      .finally(function() {
-        // always executed
       })
   }
   handleUserInput(e) {

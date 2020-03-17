@@ -56,9 +56,10 @@ class News extends React.Component {
         }
       ]
     }
+    this.getInitData = this.props.getInitData
   }
   render() {
-    // const { weatherInfo } = this.state
+    // const { weatherInfo } = this.state 
     return (
       <div className="news">
         <div style={{ textAlign: 'center' }}>
@@ -78,9 +79,17 @@ class News extends React.Component {
     )
   }
   componentDidMount() {
-    this.props.getInitData(this.state.type)
+
   }
-  componentWillUpdate() {}
+  // componentDidUpdate() {
+  //   this.props.getInitData(this.state.type)
+  // }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+    if (nextProps.selected) {
+      this.getInitData(this.state.type)
+    }
+  }
   renderSelect(types) {
     let arr = []
     types.forEach((element, index) => {
@@ -108,7 +117,6 @@ const mapStateToProps = state => {
     data: state.news
   }
 }
-
 const mapDispatchToProps = dispatch => {
   return {
     getInitData: msg => {
@@ -116,7 +124,4 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(News)
+export default connect(mapStateToProps, mapDispatchToProps)(News)

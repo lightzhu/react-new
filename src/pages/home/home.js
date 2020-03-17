@@ -1,15 +1,15 @@
 import React from 'react'
 import axios from 'axios'
-// import LazyLoad from 'react-lazyload'
 import { connect } from 'react-redux'
 import { List, Avatar, Button, Spin } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import InfiniteScroll from 'react-infinite-scroller'
 import { getWeatherInfo } from '../../actions/Index'
 import Weather from '../../components/Weather'
-import { message } from 'antd'
+import { Toast } from 'antd-mobile'
 import '../../style/home.scss'
 import logopic from '../../static/logo.png'
+import fetch from '@/static/js/request'
 // import { thisTypeAnnotation } from '@babel/types'
 axios.defaults.timeout = 60000 * 2
 class Home extends React.Component {
@@ -28,7 +28,7 @@ class Home extends React.Component {
     console.log(data)
     window.location.href = data
   }
-  cloneBtUrl(url) {}
+  cloneBtUrl(url) { }
   renderBtn(type, url) {
     if (type === 'blank') {
       return (
@@ -49,7 +49,7 @@ class Home extends React.Component {
       )
     } else {
       return (
-        <CopyToClipboard text={url} onCopy={() => {}}>
+        <CopyToClipboard text={url} onCopy={() => { }}>
           <Button
             type="primary"
             className="tool-button"
@@ -78,7 +78,6 @@ class Home extends React.Component {
         style={{ height: 'calc(100vh - 50px)', overflow: 'auto' }}
       >
         <Weather
-          weatherInfo={this.props.weatherInfo}
           cityChange={this.cityChange.bind(this)}
         />
         <InfiniteScroll
@@ -129,11 +128,10 @@ class Home extends React.Component {
         hasMore: false
       },
       () => {
-        axios
-          .get(`${this.props.host}/get_movies?page=${pageNum}&size=${pageSize}`)
-          .then(function(response) {
+        fetch(`/get_movies?page=${pageNum}&size=${pageSize}`, 'get')
+          .then(response => {
             console.log(response)
-            let list = response.data.data
+            let list = response.data
             if (pageNum === 0) {
               if (list) {
                 that.setState({
@@ -160,21 +158,21 @@ class Home extends React.Component {
               })
             }
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log(error)
-            message.info('请求失败，请刷新', 3)
+            Toast.fail('请求失败，请刷新', 2)
+            that.setState({
+              loading: false,
+              hasMore: true
+            })
           })
-          .finally(function() {})
       }
     )
   }
 }
 const mapStateToProps = state => {
-  return {
-    weatherInfo: state.weather.data
-  }
+  return {}
 }
-
 const mapDispatchToProps = dispatch => {
   return {
     getWeatherInfo: city => {
@@ -182,7 +180,4 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

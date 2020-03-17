@@ -1,7 +1,4 @@
-import axios from 'axios'
-import global from '../global'
-const apiHost = global.apiHost
-
+import fetch from '@/static/js/request'
 export const plus = nums => ({
   type: 'PLUS',
   num1: nums[0],
@@ -24,33 +21,29 @@ export const divide = nums => ({
 })
 export const getWeatherInfo = city => {
   return dispatch => {
-    axios
-      .get(`${apiHost}/get_weatherInfo?city=${city}`)
-      .then(function(response) {
+    fetch(`/get_weatherInfo?city=${city}`, 'get')
+      .then(function (response) {
         dispatch({
-          type: 'GET_WEATHER',
+          type: 'SET_WEATHER',
           data: response.data
         })
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error)
       })
-      .finally(function() {})
   }
 }
 export const getNewsInfo = type => {
   return dispatch => {
-    axios
-      .get(`${apiHost}/get_news?type=${type}`)
-      .then(function(response) {
+    fetch(`/get_news?type=${type}`, 'get')
+      .then(function (response) {
         dispatch({
           type: 'GET_NEWS',
           data: response.data
         })
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error)
       })
-      .finally(function() {})
   }
 }

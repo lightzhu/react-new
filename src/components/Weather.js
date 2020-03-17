@@ -1,6 +1,7 @@
 import React from 'react'
 import { Carousel, WingBlank, Picker, List } from 'antd-mobile'
 import district from '../static/js/area'
+import { connect } from 'react-redux'
 import '../style/weather.scss'
 class Weather extends React.Component {
   constructor(props) {
@@ -16,10 +17,10 @@ class Weather extends React.Component {
     }
   }
   pickerValueOk(msg) {
-    let city = district.find(function(value) {
+    let city = district.find(function (value) {
       return value['value'] === msg[0]
     })
-    city = city.children.find(function(value) {
+    city = city.children.find(function (value) {
       return value['value'] === msg[1]
     })
     console.log(city)
@@ -30,7 +31,6 @@ class Weather extends React.Component {
   }
   render() {
     const { weatherInfo } = this.props
-    // console.log(weatherInfo)
     return (
       <div>
         <h2>
@@ -56,9 +56,9 @@ class Weather extends React.Component {
             </List>
           </div>
           <div className="computer-box">
-            {weatherInfo ? this.renderWeather(weatherInfo.realtime) : ''}
+            {weatherInfo.realtime ? this.renderWeather(weatherInfo.realtime) : ''}
             <div className="weather-list">
-              {weatherInfo ? this.renderList(weatherInfo.future) : ''}
+              {weatherInfo.future ? this.renderList(weatherInfo.future) : ''}
             </div>
           </div>
         </h2>
@@ -132,19 +132,12 @@ class Weather extends React.Component {
     )
   }
   componentDidMount() {
-    // let that = this
-    // store.dispatch(getWeatherInfo('宁波'))
-    // store.subscribe(() => {
-    //   that.setState(
-    //     {
-    //       weatherInfo: store.getState().weather.data
-    //     },
-    //     () => {
-    //       console.log(that.state.weatherInfo)
-    //     }
-    //   )
-    // })
   }
-  componentWillUpdate() {}
+  componentWillUpdate() { }
 }
-export default Weather
+const mapStateToProps = state => {
+  return {
+    weatherInfo: state.weather.weather
+  }
+}
+export default connect(mapStateToProps)(Weather)

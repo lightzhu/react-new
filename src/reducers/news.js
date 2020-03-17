@@ -1,7 +1,7 @@
-const result = (state = { data: [1, 2] }, action) => {
+const result = (state = { data: [] }, action) => {
   switch (action.type) {
     case 'GET_NEWS':
-      return action.data
+      return { data: action.data }
     case 'MINUS':
       return [2]
     case 'MULTIPLY':

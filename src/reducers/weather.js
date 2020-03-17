@@ -1,9 +1,9 @@
-export default function(state = {}, action) {
+export default function (state = { weather: [], city: '' }, action) {
   switch (action.type) {
-    case 'GET_WEATHER':
-      return action.data
-    case 'GET_CITYS':
-      return state
+    case 'SET_WEATHER':
+      return { weather: action.data }
+    case 'SET_CITYS':
+      return { city: action.data }
     default:
       return state
   }

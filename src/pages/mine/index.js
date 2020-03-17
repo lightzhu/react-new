@@ -3,8 +3,6 @@ import React from 'react'
 import Me from './me'
 import Login from '../login/login'
 import Register from '../login/register'
-
-// import md5 from 'blueimp-md5'
 import { Router, Route } from 'react-router-dom'
 import { createHashHistory } from 'history'
 import '../../style/mine.scss'
@@ -34,7 +32,6 @@ class Mine extends React.Component {
     history.push('/login')
   }
   toLogin() {
-    debugger
     history.replace('/login')
   }
   render() {

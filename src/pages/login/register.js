@@ -1,9 +1,11 @@
 import React from 'react'
-import axios from 'axios'
 import { Input, Form, Button, Icon, Radio } from 'antd'
-// import Input from 'antd/es/input' // 加载 JS
+import { Toast } from 'antd-mobile'
 import md5 from 'blueimp-md5'
 import '../../style/mine.scss'
+import fetch from '@/static/js/request'
+import { createHashHistory } from 'history'
+const history = createHashHistory()
 class Register extends React.Component {
   constructor(props) {
     super(props)
@@ -19,21 +21,21 @@ class Register extends React.Component {
     e.preventDefault()
     const params = {
       userName: this.state.userName,
+      password: this.state.pwd,
       pwd: md5(this.state.pwd),
       hobby: this.state.hobby
     }
-    axios
-      .post(`${this.props.host}/register`, params)
-      .then(function(response) {
+    Toast.loading('Loading...')
+    fetch(`/register`, 'post', params)
+      .then(function (response) {
         // handle success
-        console.log(response)
+        Toast.info(response.msg)
+        history.push('/login')
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // handle error
+        Toast.hide()
         console.log(error)
-      })
-      .finally(function() {
-        // always executed
       })
   }
   handleUserInput(e) {

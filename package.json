@@ -2,9 +2,8 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.1.109:9090",
-  "proxy1": "http://imov.herokuapp.com",
-  "homepage1": "https://lightzhu.github.io/react_imov",
+  "proxy1": "http://192.168.1.109:9090",
+  "proxy2": "http://imov.herokuapp.com",
   "homepage": ".",
   "dependencies": {
     "@babel/core": "7.4.3",

@@ -1,19 +1,13 @@
 import React from 'react'
-// import axios from 'axios'
 import './App.css'
 import { TabBar } from 'antd-mobile'
 import Home from './pages/home/home'
 import Mine from './pages/mine/index'
-import Weather from './pages/weather/weather'
+import Echo from './pages/echo/index'
 import News from './pages/news/news'
-import global from './global'
-import { createHashHistory } from 'history'
-// const location = history.location
-// const unlisten = history.listen((location, action) => {
-//   console.log(action, location.pathname, location.state)
-// })
+// import { createHashHistory } from 'history'
 // const history = createBrowserHistory()
-const history = createHashHistory()
+// const history = createHashHistory()
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +16,6 @@ class App extends React.Component {
       userName: '',
       pwd: '',
       loggedIn: false,
-      apiHost: global.apiHost,
       tabHidden: false,
       selectedTab: 'mov',
       checkLogin: false
@@ -33,7 +26,8 @@ class App extends React.Component {
     this.setState({
       selectedTab: selectTab
     })
-    history.push('/')
+    // history.push('/')
+    window.location.hash = '/'
     if (selectTab === 'mine') {
       this.setState({
         checkLogin: true
@@ -45,51 +39,9 @@ class App extends React.Component {
       })
     }
   }
-  handleClick() {
-    // history.push('/home', { some: 'state' })
-  }
   render() {
-    const { apiHost } = this.state
     return (
       <div className="App">
-        {/* <Router history={history}>
-          <Route
-            exact
-            path="/"
-            render={() =>
-              loggedIn ? (
-                <Redirect to="/dashboard" />
-              ) : (
-                <Home router={history} host={apiHost} />
-              )
-            }
-          />
-          <Route
-            path="/login"
-            exact
-            render={() => <Login router={history} host={apiHost} />}
-          />
-          <Route
-            path="/home"
-            exact
-            render={() => <Home router={history} host={apiHost} />}
-          />
-          <Route
-            path="/register"
-            exact
-            render={() => <Register router={history} host={apiHost} />}
-          />
-          <Route
-            path="/Weather"
-            exact
-            render={() => <Weather router={history} host={apiHost} />}
-          />
-          <Route
-            path="/News"
-            exact
-            render={() => <News router={history} host={apiHost} />}
-          />
-        </Router> */}
         <div
           className="nav-bar"
           style={{
@@ -119,7 +71,7 @@ class App extends React.Component {
               onPress={this.handleTabPress.bind(this, 'mov')}
               data-seed="logId"
             >
-              <Home host={apiHost} />
+              <Home selected={this.state.selectedTab === 'mov'} />
             </TabBar.Item>
             <TabBar.Item
               title="热点"
@@ -134,7 +86,7 @@ class App extends React.Component {
               onPress={this.handleTabPress.bind(this, 'hot')}
               data-seed="logId1"
             >
-              <News host={apiHost} />
+              <News selected={this.state.selectedTab === 'hot'} />
             </TabBar.Item>
             <TabBar.Item
               icon={
@@ -156,12 +108,12 @@ class App extends React.Component {
                 />
               }
               title="虫洞"
-              key="Friend"
+              key="echo"
               badge={1}
-              selected={this.state.selectedTab === 'friend'}
-              onPress={this.handleTabPress.bind(this, 'friend')}
+              selected={this.state.selectedTab === 'echo'}
+              onPress={this.handleTabPress.bind(this, 'echo')}
             >
-              <Weather host={apiHost} />
+              <Echo selected={this.state.selectedTab === 'echo'} />
             </TabBar.Item>
             <TabBar.Item
               icon={{
@@ -177,7 +129,7 @@ class App extends React.Component {
               selected={this.state.selectedTab === 'mine'}
               onPress={this.handleTabPress.bind(this, 'mine')}
             >
-              <Mine host={apiHost} checkLogin={this.state.checkLogin} />
+              <Mine selected={this.state.selectedTab === 'mine'} checkLogin={this.state.checkLogin} />
             </TabBar.Item>
           </TabBar>
         </div>

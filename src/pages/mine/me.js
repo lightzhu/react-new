@@ -1,7 +1,8 @@
 import React from 'react'
-// import axios from 'axios'
-// import { Input, Form, Button, Icon, message } from 'antd'
+import { Button } from 'antd-mobile';
 import '../../style/mine.scss'
+import { createHashHistory } from 'history'
+const history = createHashHistory()
 class Me extends React.Component {
   constructor(props) {
     super(props)
@@ -9,31 +10,26 @@ class Me extends React.Component {
       userName: ''
     }
   }
-  // gotoRegister() {
-  //   history.push('/register')
-  // }
+  loginOut() {
+    window.sessionStorage.removeItem('logined')
+    history.push('/login')
+  }
   render() {
-    return <div>我的详情页</div>
+    return (<div>
+      我的详情页
+      <Button onClick={this.loginOut}>退出登陆</Button>
+    </div>)
   }
   componentDidUpdate(prevProps, prevState) {
-    //debugger
-    // if (prevProps.checkLogin) {
-    //   if (!window.sessionStorage.logined) {
-    //     this.props.toLogin()
-    //   }
-    //   console.log(prevProps, prevState)
-    // }
   }
   componentDidMount() {
-    console.log(this.props.checkLogin)
-    if (this.props.checkLogin) {
-      if (!window.sessionStorage.logined) {
-        this.props.toLogin()
-      }
-    }
-    // if (!window.sessionStorage.logined) {
-    //   this.props.toLogin()
+    // console.log(this.props.checkLogin)
+    // if (this.props.checkLogin) {
+
     // }
+    if (window.sessionStorage.getItem('logined') !== 'true') {
+      this.props.toLogin()
+    }
   }
 }
 
