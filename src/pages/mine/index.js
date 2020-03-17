@@ -1,6 +1,5 @@
 import React from 'react'
 // import axios from 'axios'
-// import { Input, Form, Button, Icon, message } from 'antd'
 import Me from './me'
 import Login from '../login/login'
 import Register from '../login/register'
