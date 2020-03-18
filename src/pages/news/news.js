@@ -79,16 +79,12 @@ class News extends React.Component {
     )
   }
   componentDidMount() {
-
+    // console.log(0)
+    this.getInitData(this.state.type)
   }
-  // componentDidUpdate() {
-  //   this.props.getInitData(this.state.type)
-  // }
+  componentDidUpdate() { }
   componentWillReceiveProps(nextProps) {
     console.log(nextProps)
-    if (nextProps.selected) {
-      this.getInitData(this.state.type)
-    }
   }
   renderSelect(types) {
     let arr = []
