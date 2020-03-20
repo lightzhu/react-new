@@ -1,10 +1,12 @@
 import React from 'react'
 import './App.css'
-import { TabBar } from 'antd-mobile'
+import { TabBar, Toast } from 'antd-mobile'
 import Home from './pages/home/home'
 import Mine from './pages/mine/index'
 import Echo from './pages/echo/index'
 import News from './pages/news/news'
+import { connect } from 'react-redux'
+import { getNewsInfo } from './actions/Index'
 // import { createHashHistory } from 'history'
 // const history = createBrowserHistory()
 // const history = createHashHistory()
@@ -37,6 +39,11 @@ class App extends React.Component {
       this.setState({
         checkLogin: false
       })
+    }
+    if (selectTab === 'hot') {
+      const { getNewsInfo } = this.props
+      getNewsInfo('top')
+      Toast.loading("Loading...", 20000)
     }
   }
   render() {
@@ -138,4 +145,16 @@ class App extends React.Component {
   }
 }
 
-export default App
+const mapStateToProps = state => {
+  return {
+    data: state.news
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    getNewsInfo: msg => {
+      dispatch(getNewsInfo(msg))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App)

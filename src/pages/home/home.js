@@ -1,14 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { List, Avatar, Button, Spin } from 'antd'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import InfiniteScroll from 'react-infinite-scroller'
+import { Toast } from 'antd-mobile'
 import { getWeatherInfo } from '../../actions/Index'
 import Weather from '../../components/Weather'
-import { Toast } from 'antd-mobile'
+import ListView from '../../components/ListView'
 import '../../style/home.scss'
-import logopic from '../../static/logo.png'
 import fetch from '@/static/js/request'
 // import { thisTypeAnnotation } from '@babel/types'
 axios.defaults.timeout = 60000 * 2
@@ -22,43 +19,6 @@ class Home extends React.Component {
       loading: true,
       hasMore: true,
       city: '宁波'
-    }
-  }
-  gotoDetail(data) {
-    console.log(data)
-    window.location.href = data
-  }
-  cloneBtUrl(url) { }
-  renderBtn(type, url) {
-    if (type === 'blank') {
-      return (
-        <CopyToClipboard
-          text={url}
-          onCopy={() => {
-            console.log(9)
-          }}
-        >
-          <Button
-            type="primary"
-            className="tool-button"
-            onClick={this.gotoDetail.bind(this, url)}
-          >
-            查看详情
-          </Button>
-        </CopyToClipboard>
-      )
-    } else {
-      return (
-        <CopyToClipboard text={url} onCopy={() => { }}>
-          <Button
-            type="primary"
-            className="tool-button"
-            onClick={this.cloneBtUrl.bind(this, url)}
-          >
-            复制下载
-          </Button>
-        </CopyToClipboard>
-      )
     }
   }
   movieLoad() {
@@ -80,7 +40,8 @@ class Home extends React.Component {
         <Weather
           cityChange={this.cityChange.bind(this)}
         />
-        <InfiniteScroll
+        <ListView loadMore={this.movieLoad.bind(this)} data={data} isLoading={loading} hasMore={hasMore} />
+        {/* <InfiniteScroll
           pageStart={0}
           loadMore={this.movieLoad.bind(this)}
           hasMore={hasMore}
@@ -103,7 +64,7 @@ class Home extends React.Component {
                     />
                   }
                   title={<a href="http://imov.herokuapp.com">{item.title}</a>}
-                  description={item.btUrl}
+                  description=btUrl
                 />
               </List.Item>
             )}
@@ -111,17 +72,18 @@ class Home extends React.Component {
           <div className="loader">
             <Spin spinning={loading} />
           </div>
-        </InfiniteScroll>
+        </InfiniteScroll> */}
       </div>
     )
   }
   componentDidMount() {
-    this.getMovieList()
+    // this.getMovieList()
     this.props.getWeatherInfo(this.state.city)
   }
   getMovieList() {
     let that = this
     let { pageNum, pageSize } = this.state
+    Toast.loading('Loading...', 20000)
     that.setState(
       {
         loading: true,
@@ -157,10 +119,14 @@ class Home extends React.Component {
                 hasMore: true
               })
             }
+            Toast.hide()
           })
           .catch(function (error) {
             console.log(error)
-            Toast.fail('请求失败，请刷新', 2)
+            Toast.hide()
+            setTimeout(() => {
+              Toast.fail('请求失败，请刷新', 2)
+            }, 100)
             that.setState({
               loading: false,
               hasMore: true

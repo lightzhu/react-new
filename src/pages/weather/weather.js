@@ -1,5 +1,4 @@
 import React from 'react'
-import { Affix, List } from 'antd'
 import '../../style/weather.scss'
 import store from '../../reducers/store'
 import { getWeatherInfo } from '../../actions/Index'
@@ -20,9 +19,6 @@ class Weather extends React.Component {
     const { weatherInfo } = this.state
     return (
       <div className="home">
-        <Affix>
-          <h2>今日天气</h2>
-        </Affix>
         <div className="computer-box">
           {weatherInfo ? this.renderWeather(weatherInfo.realtime) : ''}
           <div className="weather-list">
@@ -74,19 +70,7 @@ class Weather extends React.Component {
   }
   renderList(data) {
     return (
-      <List
-        dataSource={data}
-        renderItem={item => (
-          <List.Item>
-            <h4>{item.date}</h4>
-            <p>
-              <span>{item.weather}</span>
-              <span>{item.temperature}</span>
-              <span>{item.direct}</span>
-            </p>
-          </List.Item>
-        )}
-      />
+
     )
   }
   componentDidMount() {
@@ -103,6 +87,6 @@ class Weather extends React.Component {
       )
     })
   }
-  componentWillUpdate() {}
+  componentWillUpdate() { }
 }
 export default Weather

@@ -1,16 +1,14 @@
 import React from 'react'
-import { Select } from 'antd'
-import '../../style/home.scss'
+import { Toast } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { getNewsInfo } from '../../actions/Index'
 import Aticle from './article'
-const Option = Select.Option
+import '../../style/home.scss'
 
 class News extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [],
       loading: true,
       type: 'top',
       newsType: [
@@ -58,18 +56,55 @@ class News extends React.Component {
     }
     this.getInitData = this.props.getInitData
   }
+  componentDidMount() {
+    // this.getInitData(this.state.type)
+  }
+  componentDidUpdate(prevProps, prevState, nextProps) {
+
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps, this.props)
+    if (nextProps.data !== this.props.data) {
+      Toast.hide()
+    }
+  }
+  renderSelect(types) {
+    let arr = []
+    types.forEach((element, index) => {
+      arr.push(
+        <option key={index} value={element.val}>
+          {element.name}
+        </option>
+      )
+    })
+    return arr
+  }
+  newTypeChange(event) {
+    console.log(event.target.value)
+    this.setState(
+      {
+        type: event.target.value
+      },
+      () => {
+        Toast.loading("Loading...", 20000)
+        this.props.getInitData(this.state.type).catch(() => {
+          console.log(0)
+        })
+      }
+    )
+  }
   render() {
     // const { weatherInfo } = this.state 
     return (
       <div className="news">
         <div style={{ textAlign: 'center' }}>
-          <Select
-            defaultValue={this.state.newsType[0].name}
+          <select
+            value={this.state.type}
             onChange={this.newTypeChange.bind(this)}
-            style={{ width: 190, marginTop: 10 }}
+            style={{ marginTop: 10 }}
           >
             {this.renderSelect(this.state.newsType)}
-          </Select>
+          </select>
         </div>
 
         <div className="news-box">
@@ -78,37 +113,9 @@ class News extends React.Component {
       </div>
     )
   }
-  componentDidMount() {
-    // console.log(0)
-    this.getInitData(this.state.type)
-  }
-  componentDidUpdate() { }
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-  }
-  renderSelect(types) {
-    let arr = []
-    types.forEach((element, index) => {
-      arr.push(
-        <Option key={index} value={element.val}>
-          {element.name}
-        </Option>
-      )
-    })
-    return arr
-  }
-  newTypeChange(value) {
-    this.setState(
-      {
-        type: value
-      },
-      () => {
-        this.props.getInitData(this.state.type)
-      }
-    )
-  }
 }
 const mapStateToProps = state => {
+  console.log(state)
   return {
     data: state.news
   }

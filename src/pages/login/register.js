@@ -1,10 +1,15 @@
 import React from 'react'
-import { Input, Form, Button, Icon, Radio } from 'antd'
-import { Toast } from 'antd-mobile'
+import { Toast, Button, InputItem, Radio } from 'antd-mobile'
+// import { createForm } from 'rc-form';
 import md5 from 'blueimp-md5'
 import '../../style/mine.scss'
 import fetch from '@/static/js/request'
 import { createHashHistory } from 'history'
+import user from '../../static/icon/user.png'
+import password from '../../static/icon/pwd.png'
+import zone from '../../static/icon/zone.png'
+import hobby from '../../static/icon/hobby.png'
+// const RadioItem = Radio.RadioItem;
 const history = createHashHistory()
 class Register extends React.Component {
   constructor(props) {
@@ -13,9 +18,13 @@ class Register extends React.Component {
       userName: '',
       pwd: '',
       hobby: '',
-      gender: '男',
+      gender: 'man',
       region: ''
     }
+    this.data = [
+      { value: 'man', label: '男' },
+      { value: 'female', label: '女' },
+    ];
   }
   handleSubmit(e) {
     e.preventDefault()
@@ -25,7 +34,7 @@ class Register extends React.Component {
       pwd: md5(this.state.pwd),
       hobby: this.state.hobby
     }
-    Toast.loading('Loading...')
+    Toast.loading('Loading...', 20000)
     fetch(`/register`, 'post', params)
       .then(function (response) {
         // handle success
@@ -38,87 +47,84 @@ class Register extends React.Component {
         console.log(error)
       })
   }
-  handleUserInput(e) {
+  handleUserInput(value) {
     this.setState({
-      userName: e.target.value
+      userName: value
     })
   }
-  handlePwdInput(e) {
+  handlePwdInput(value) {
     this.setState({
-      pwd: e.target.value
+      pwd: value
     })
   }
-  handleRegionInput(e) {
+  handleRegionInput(value) {
     this.setState({
-      region: e.target.value
+      region: value
     })
   }
-  handleHobbyInput(e) {
+  handleHobbyInput(value) {
     this.setState({
-      hobby: e.target.value
+      hobby: value
     })
   }
-  onGenderChange(e) {
-    debugger
+  onGenderChange(value) {
     this.setState({
-      gender: e.target.value
+      gender: value
     })
   }
   render() {
+    // const { getFieldProps } = this.props.form;
     return (
       <div className="reg">
-        <Form onSubmit={this.handleSubmit.bind(this)} className="login-form">
-          <Form.Item>
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+        <form className="login-form">
+          <div className="form-item">
+            <InputItem
+              type="text"
               placeholder="昵称"
-              value={this.state.userName}
+              error={this.state.hasError}
               onChange={this.handleUserInput.bind(this)}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              value={this.state.userName}
+            ><img src={user} alt='' /></InputItem>
+          </div>
+          <div className="form-item">
+            <InputItem
               type="password"
               placeholder="密码"
-              value={this.state.pwd}
+              error={this.state.hasError}
               onChange={this.handlePwdInput.bind(this)}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Input
-              prefix={
-                <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.25)' }} />
-              }
+              value={this.state.pwd}
+            ><img src={password} alt='' /></InputItem>
+          </div>
+          <div className="form-item">
+            <InputItem
+              type="text"
               placeholder="地区"
               value={this.state.region}
               onChange={this.handleRegionInput.bind(this)}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Input
-              prefix={
-                <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.25)' }} />
-              }
+              error={this.state.hasError}
+            ><img src={zone} alt='' /></InputItem>
+          </div>
+          <div className="form-item">
+            <InputItem
+              type="text"
               placeholder="兴趣爱好"
-              value={this.state.hobby}
+              error={this.state.hasError}
               onChange={this.handleHobbyInput.bind(this)}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Radio.Group
-              onChange={this.onGenderChange.bind(this)}
-              value={this.state.gender}
-            >
-              <Radio value="女">女的</Radio>
-              <Radio value="男">男的</Radio>
-            </Radio.Group>
-          </Form.Item>
+              value={this.state.hobby}
+            ><img src={hobby} alt='' /></InputItem>
+          </div>
+          <div className="form-sex">
+            {this.data.map(i => (
+              <Radio className="my-radio" key={i.value} checked={this.state.gender === i.value} onChange={() => this.onGenderChange(i.value)}>
+                {i.label}
+              </Radio>
+            ))}
+          </div>
           <div className="btn-box">
             <Button
               type="primary"
               size="large"
-              htmlType="submit"
+              onClick={this.handleSubmit.bind(this)}
               className="login-form-button"
             >
               注册
@@ -132,7 +138,7 @@ class Register extends React.Component {
               已有账号
             </Button>
           </div>
-        </Form>
+        </form>
       </div>
     )
   }

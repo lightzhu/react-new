@@ -1,30 +1,116 @@
-.reg,.login{
+.reg,
+.login {
   height: 100%;
 }
-.App .login-form{
+
+.App .login-form {
   height: 100%;
 }
-.ant-form-item{
-  margin-bottom:15px;
+
+.ant-form-item {
+  margin-bottom: 15px;
   width: 68%;
 }
 
-.login{
-  .login-form-button{
+.login {
+  .login-form-button {
     width: 68%;
-    margin-bottom:8px;
+    margin-top: 20px;
   }
-  .animate{
+
+  .animate {
     position: relative;
-    left:0;
+    left: 0;
     animation: regist 0.8s infinite;
   }
 }
-.btn-box{
+
+.btn-box {
   width: 80%;
   display: flex;
   justify-content: space-between;
-  button{
+  margin-top: 20px;
+
+  a {
     width: 40%;
   }
+}
+
+.reg {
+  .form-item {
+    margin-top: 10px;
+  }
+
+  .am-list-item {
+    padding: 0;
+
+    &.am-input-item {
+      padding: 0;
+    }
+  }
+
+  .am-list-item .am-input-label.am-input-label-5 {
+    width: 40px;
+    text-align: center;
+  }
+
+  .am-list-item .am-list-line {
+    justify-content: center;
+    border-radius: 3px;
+    align-items: center;
+    border: 1px solid #cecee0;
+  }
+
+  .am-list-item .am-input-control input {
+    line-height: 29px;
+  }
+
+  .form-sex {
+    margin: 10px;
+
+    .am-radio {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .my-radio {
+    line-height: 25px;
+    margin: 0 5px;
+
+    .am-radio {
+      padding: 2.5px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
+}
+
+//我的页面
+.head {
+  padding-top: 20px;
+  background: #39a9ed;
+  display: flex;
+  justify-content: enter;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: #fff;
+  }
+}
+
+.sub-title {
+  color: #888;
+  font-size: 14px;
+  padding: 15px 0 9px 15px;
+}
+
+.not-square-grid .am-grid-icon {
+  width: 40px;
+  height: 60px;
 }

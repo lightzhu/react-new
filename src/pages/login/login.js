@@ -1,8 +1,9 @@
 import React from 'react'
-import { Input, Form, Button, Icon, message } from 'antd'
 import fetch from '@/static/js/request'
-import { Toast } from 'antd-mobile'
+import { Toast, Button, InputItem, Icon } from 'antd-mobile'
 import md5 from 'blueimp-md5'
+import user from '../../static/icon/user.png'
+import password from '../../static/icon/pwd.png'
 import '../../style/mine.scss'
 class Login extends React.Component {
   constructor(props) {
@@ -19,13 +20,13 @@ class Login extends React.Component {
       pwd: md5(this.state.pwd)
     }
     // let that = this
-    Toast.loading('Loading...')
+    Toast.loading('Loading...', 20000)
     fetch('/login', 'post', params)
       .then(function (response) {
         // handle success
         console.log(response)
         if (response.statue === 0) {
-          message.loading(response.msg, 0.1)
+          Toast.info(response.msg, 1);
           window.sessionStorage.setItem('logined', 'true')
           window.location.hash = '/'
         } else {
@@ -38,14 +39,14 @@ class Login extends React.Component {
         console.log(error)
       })
   }
-  handleUserInput(e) {
+  handleUserInput(val) {
     this.setState({
-      userName: e.target.value
+      userName: val
     })
   }
-  handlePwdInput(e) {
+  handlePwdInput(val) {
     this.setState({
-      pwd: e.target.value
+      pwd: val
     })
   }
   // gotoRegister() {
@@ -53,31 +54,30 @@ class Login extends React.Component {
   // }
   render() {
     return (
-      <div className="login">
-        <Form onSubmit={this.handleSubmit.bind(this)} className="login-form">
-          <Form.Item>
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
-              value={this.state.userName}
-              size="large"
+      <div className="login reg">
+        <form className="login-form">
+          <div className="form-item">
+            <InputItem
+              type="text"
+              placeholder="昵称"
+              error={this.state.hasError}
               onChange={this.handleUserInput.bind(this)}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              value={this.state.userName}
+            ><img src={user} alt='' /></InputItem>
+          </div>
+          <div className="form-item">
+            <InputItem
               type="password"
-              size="large"
-              placeholder="Password"
-              value={this.state.pwd}
+              placeholder="密码"
+              error={this.state.hasError}
               onChange={this.handlePwdInput.bind(this)}
-            />
-          </Form.Item>
+              value={this.state.pwd}
+            ><img src={password} alt='' /></InputItem>
+          </div>
           <Button
             size="large"
             type="primary"
-            htmlType="submit"
+            onClick={this.handleSubmit.bind(this)}
             className="login-form-button"
           >
             登陆
@@ -89,9 +89,9 @@ class Login extends React.Component {
             className="login-form-button"
           >
             创建账号
-            <Icon type="arrow-right" className="animate" />
+            <Icon type="right" size="lg" className="animate" />
           </Button>
-        </Form>
+        </form>
       </div>
     )
   }

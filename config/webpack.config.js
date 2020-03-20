@@ -42,8 +42,6 @@ const cssModuleRegex = /\.module\.css$/
 const sassRegex = /\.(scss|sass)$/
 const sassModuleRegex = /\.module\.(scss|sass)$/
 
-// This is the production and development configuration.
-// It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development'
   const isEnvProduction = webpackEnv === 'production'
@@ -82,13 +80,8 @@ module.exports = function (webpackEnv) {
         options: cssOptions
       },
       {
-        // Options for PostCSS as we reference these options twice
-        // Adds vendor prefixing based on your specified browser support in
-        // package.json
         loader: require.resolve('postcss-loader'),
         options: {
-          // Necessary for external CSS imports to work
-          // https://github.com/facebook/create-react-app/issues/2677
           ident: 'postcss',
           plugins: () => [
             require('postcss-flexbugs-fixes'),
@@ -98,9 +91,6 @@ module.exports = function (webpackEnv) {
               },
               stage: 3
             }),
-            // Adds PostCSS Normalize as the reset css with default options,
-            // so that it honors browserslist config in package.json
-            // which in turn let's users customize the target behavior as per their needs.
             postcssNormalize()
           ],
           sourceMap: isEnvProduction && shouldUseSourceMap
@@ -200,8 +190,6 @@ module.exports = function (webpackEnv) {
             output: {
               ecma: 5,
               comments: false,
-              // Turned on because emoji and regex is not minified properly using default
-              // https://github.com/facebook/create-react-app/issues/2488
               ascii_only: true
             }
           },
@@ -216,11 +204,7 @@ module.exports = function (webpackEnv) {
             parser: safePostCssParser,
             map: shouldUseSourceMap
               ? {
-                // `inline: false` forces the sourcemap to be output into a
-                // separate file
                 inline: false,
-                // `annotation: true` appends the sourceMappingURL to the end of
-                // the css file, helping the browser find the sourcemap
                 annotation: true
               }
               : false

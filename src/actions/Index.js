@@ -43,7 +43,7 @@ export const getNewsInfo = type => {
         })
       })
       .catch(function (error) {
-        console.log(error)
+        throw (error)
       })
   }
 }

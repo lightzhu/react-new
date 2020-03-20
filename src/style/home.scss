@@ -1,105 +1,131 @@
-.home{
-  
+.home {
+  .am-button {
+    width: 100px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    float: right;
+  }
 }
-.home,.news{
-  h2{
-    color:#fff;
-    font-size:24px;
+
+.home,
+.news {
+  h2 {
+    color: #fff;
+    font-size: 24px;
     margin: 0;
-    line-height:50px;
+    line-height: 50px;
     background: #25ade4;
     text-align: center;
   }
-  .avatar{
+
+  .avatar {
     width: 66px;
     height: 100px;
-    border-radius:0;
+    border-radius: 0;
   }
-  .ant-list{
-    margin:0 10px;
-    .ant-list-item{
+
+  .ant-list {
+    margin: 0 10px;
+
+    .ant-list-item {
       position: relative;
-      .ant-btn{
+
+      .ant-btn {
         position: absolute;
-        right:5px;
-        top:6px;
+        right: 5px;
+        top: 6px;
         height: 28px;
         line-height: 28px;
       }
     }
   }
-  .ant-list-item-meta-description{
+
+  .ant-list-item-meta-description {
     word-break: break-all;
   }
 }
-.news{
-  select{
-    width: 50%;
+
+.news {
+  select {
+    width: 60%;
     border: 1px solid #ccc;
     height: 30px;
-    margin:10px 0;
-    margin-left:80px;
+    margin: 10px 0;
   }
 }
-.loader{
+
+.loader {
   text-align: center;
   margin-bottom: 20px;
   margin: 20px 0;
 }
-.home{
-  .computer-box{
+
+.home {
+  .computer-box {
     display: flex;
     position: relative;
-    span{
+
+    span {
       line-height: 40px;
     }
-    .other{
-      font-size:14px;
+
+    .other {
+      font-size: 14px;
       line-height: 30px;
     }
   }
-  h2{
-     position: relative;
+
+  h2 {
+    position: relative;
   }
-  .location{
+
+  .location {
     width: 20px;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     position: absolute;
     z-index: 10;
     background: #25ade4;
-    font-size:16px;
-    color:#fff;
+    font-size: 16px;
+    color: #fff;
     line-height: 1.5;
-    div{
+
+    div {
       background: transparent;
     }
-    .city{
-      padding-top:5px;
+
+    .city {
+      padding-top: 5px;
       width: 200%;
       overflow: hidden;
-      span{
-        font-size:12px;
+
+      span {
+        font-size: 12px;
         display: block;
-        margin-top:-3px;
+        margin-top: -3px;
       }
     }
   }
-  .real-time{
+
+  .real-time {
     width: 50%;
-    padding-left:28px;
+    padding-left: 28px;
   }
-  .weather-list{
+
+  .weather-list {
     width: 50%;
     height: 70px;
     overflow: hidden;
   }
-  .am-wingblank{
-    margin:0;
+
+  .am-wingblank {
+    margin: 0;
   }
-  .v-item{
-    font-size:14px;
-    padding-top:10px;
+
+  .v-item {
+    font-size: 14px;
+    padding-top: 10px;
     line-height: 25px;
     height: 70px;
     overflow: hidden;
