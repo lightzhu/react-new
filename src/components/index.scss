@@ -1,0 +1,44 @@
+.content-head {
+  line-height: '50px';
+  color: '#888';
+  font-size: 18;
+  border-bottom: '1px solid #F6F6F6';
+
+  h5 {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 50px;
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      margin-right: 20px;
+    }
+  }
+}
+
+.content-body {
+  flex-direction: column;
+  display: flex;
+
+  .img-box {
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      width: 48%;
+      height: auto;
+    }
+  }
+}
+
+.content-foot {
+  text-align: right;
+  img {
+    width: 20px;
+    display: inline-block;
+    margin: 0 10px;
+  }
+}
