@@ -1,0 +1,36 @@
+.echo {
+  position: relative;
+}
+
+.add-new {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  transform: rotate(45deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+}
+
+.popup-box {
+  height: 60vh;
+  position: relative;
+
+  .am-textarea-control {
+    min-height: 100px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .btn-box {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+}

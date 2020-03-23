@@ -17,6 +17,7 @@ class Me extends React.Component {
   }
   loginOut() {
     window.sessionStorage.removeItem('logined')
+    window.sessionStorage.removeItem('userId')
     history.push('/login')
   }
   render() {

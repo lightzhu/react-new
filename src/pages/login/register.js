@@ -28,11 +28,16 @@ class Register extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault()
+    const { userName, pwd, hobby } = this.state
+    if (userName.trim() === '' || pwd.trim() === '') {
+      Toast.info('用户名或密码不能为空！')
+      return false
+    }
     const params = {
-      userName: this.state.userName,
-      password: this.state.pwd,
-      pwd: md5(this.state.pwd),
-      hobby: this.state.hobby
+      userName,
+      hobby,
+      password: pwd,
+      pwd: md5(pwd)
     }
     Toast.loading('Loading...', 20000)
     fetch(`/register`, 'post', params)

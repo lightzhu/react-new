@@ -15,8 +15,13 @@ class Login extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault()
+    const { userName, pwd } = this.state
+    if (userName.trim() === '' || pwd.trim() === '') {
+      Toast.info('用户名或密码不能为空！')
+      return false
+    }
     const params = {
-      userName: this.state.userName,
+      userName,
       pwd: md5(this.state.pwd)
     }
     // let that = this
@@ -28,6 +33,8 @@ class Login extends React.Component {
         if (response.statue === 0) {
           Toast.info(response.msg, 1);
           window.sessionStorage.setItem('logined', 'true')
+          window.sessionStorage.setItem('userId', response.userId)
+          window.sessionStorage.setItem('username', response.userName)
           window.location.hash = '/'
         } else {
           Toast.info(response.msg)

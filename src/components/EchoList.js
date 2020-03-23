@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView, Icon } from 'antd-mobile';
+import { ListView } from 'antd-mobile';
 import heart from '../static/icon/heart.png'
 import message from '../static/icon/message.png'
 import './index.scss'
