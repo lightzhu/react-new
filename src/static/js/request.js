@@ -18,8 +18,8 @@ axios.interceptors.response.use(
   }
 )
 // 接口地址
-const API_URL = 'http://192.168.1.109:8090'
-// const API_URL = 'https://webadd.herokuapp.com'
+// const API_URL = 'http://192.168.1.109:8090'
+const API_URL = 'https://webadd.herokuapp.com'
 // const API_URL = 'https://imov.herokuapp.com'
 // ajax方法封装
 function fetch(path, method = 'GET', params = {}) {
