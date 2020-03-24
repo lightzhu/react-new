@@ -144,6 +144,7 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.12.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "gh-pages": "^2.1.1",
     "uglifyjs-webpack-plugin": "^2.2.0"
   }

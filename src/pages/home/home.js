@@ -77,7 +77,7 @@ class Home extends React.Component {
     )
   }
   componentDidMount() {
-    // this.getMovieList()
+    this.getMovieList()
     this.props.getWeatherInfo(this.state.city)
   }
   getMovieList() {

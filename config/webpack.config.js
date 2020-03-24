@@ -21,6 +21,7 @@ const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const paths = require('./paths')
 const modules = require('./modules')
 const getClientEnvironment = require('./env')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
@@ -430,6 +431,10 @@ module.exports = function (webpackEnv) {
         filename: 'static/css/[name].[contenthash:8].css',
         chunkFilename: 'static/css/[name].[contenthash:8].chunk.css'
       }),
+      // new ExtractTextPlugin({
+      //   filename: 'static/css/[name].[contenthash:8].css',
+      //   allChunks: true
+      // }),
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
         publicPath: publicPath,

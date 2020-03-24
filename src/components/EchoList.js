@@ -45,7 +45,16 @@ class EchoList extends Component {
     //   });
     // }, 1000);
   }
-
+  renderurl = (buffer) => {
+    let bytes = new Uint8Array(buffer.data);
+    let storeData = "";
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      storeData += String.fromCharCode(bytes[i]);
+    }
+    let imgUrl = "data:image/png;base64," + window.btoa(storeData);
+    return imgUrl
+  }
   render() {
     const { data, loading } = this.props
     let index = data.length - 1;
@@ -58,16 +67,17 @@ class EchoList extends Component {
         <div key={rowID} style={{ padding: '0 15px', borderTop: '20px solid #f5f5f9' }}>
           <div className="content-head">
             <h5>
-              <img src="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"></img>
-              <span>用户名</span>
+              <img src="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg" alt=''></img>
+              <div className="title">
+                <span>{obj.username}</span>
+                <p>{obj.title}</p>
+              </div>
             </h5>
           </div>
           <div className="content-body">
-            <p>This is content of `Card`,This is content of `Card`,This is content of `Card`
-            This is content of `Card`,This is content of `Card`
-            </p>
+            <p>{obj.content}</p>
             <p className="img-box">
-              <img src='//wx3.sinaimg.cn/mw600/0085KTY1gy1gd1xptnkdoj31400u0e81.jpg' alt="" />
+              <img src={this.renderurl(obj.image_content)} alt="" />
             </p>
           </div>
           <div className="content-foot"><img src={heart} alt='' /><img src={message} alt='' /></div>

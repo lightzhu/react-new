@@ -56,9 +56,9 @@ class Weather extends React.Component {
             </List>
           </div>
           <div className="computer-box">
-            {weatherInfo.realtime ? this.renderWeather(weatherInfo.realtime) : ''}
+            {weatherInfo ? this.renderWeather(weatherInfo.realtime) : ''}
             <div className="weather-list">
-              {weatherInfo.future ? this.renderList(weatherInfo.future) : ''}
+              {weatherInfo ? this.renderList(weatherInfo.future) : ''}
             </div>
           </div>
         </h2>
@@ -101,6 +101,9 @@ class Weather extends React.Component {
     }
   }
   renderList(data) {
+    if (!data) {
+      return null
+    }
     let itemList = data.map(item => {
       return (
         <div className="v-item" key={item.date}>

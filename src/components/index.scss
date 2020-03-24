@@ -16,6 +16,15 @@
       border-radius: 15px;
       margin-right: 20px;
     }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    p {
+      margin: 5px 0;
+    }
   }
 }
 
@@ -36,6 +45,7 @@
 
 .content-foot {
   text-align: right;
+
   img {
     width: 20px;
     display: inline-block;

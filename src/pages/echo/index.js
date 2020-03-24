@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import { NoticeBar, PullToRefresh, Icon, Toast, Button, ImagePicker, Modal, InputItem, TextareaItem } from 'antd-mobile'
 import EchoList from '../../components/EchoList'
+import compressImage from '../../components/compressImage'
 import fetch from '@/static/js/request'
 import axios from 'axios'
 import '../../style/echo.scss'
-function genData() {
-  const dataArr = [];
-  for (let i = 0; i < 20; i++) {
-    dataArr.push(i);
-  }
-  return dataArr;
-}
+const API_URL = 'https://webadd.herokuapp.com'
 class Echo extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       refreshing: false,
       down: true,
@@ -30,27 +24,20 @@ class Echo extends Component {
     }
   }
   componentDidMount() {
-    // const hei = this.state.height - ReactDOM.findDOMNode(this.ptr).offsetTop;
-    setTimeout(() => this.setState({
-      data: genData(),
-    }), 0);
-    //获取图片接口
-    // fetch(`/getfile`, 'get')
-    //   .then(response => {
-    //     console.log('data:image/jpeg;base64,' + encodeURI(response.content))
-
-    //     let bytes = new Uint8Array(response.content.data);
-    //     let storeData = "";
-    //     let len = bytes.byteLength;
-    //     for (let i = 0; i < len; i++) {
-    //       storeData += String.fromCharCode(bytes[i]);
-    //     }
-    //     let imgUrl = "data:image/png;base64," + window.btoa(storeData);
-    //     this.setState({ imgUrl })
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
+    this.getTopics()
+  }
+  getTopics() {
+    //获取热点数据接口
+    fetch(`/getTopics`, 'get')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          data: response.data,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
   loadMore() {
     // debugger
@@ -92,31 +79,44 @@ class Echo extends Component {
   handleSubmit() {
     let formData = new FormData()
     const { files, title, content } = this.state
-    for (let i = 0; i < files.length; i++) {
-      formData.append('file', files[i].file)
+    if (title === '') {
+      return Toast.info('标题不能为空')
     }
-    formData.append('title', title)
-    formData.append('content', content)
-    formData.append('user_id', window.sessionStorage.getItem('userId'))
-    formData.append('username', window.sessionStorage.getItem('username'))
-    let config = {
-      headers: { 'Content-Type': 'multipart/form-data' }
+    if (files[0].file.size > 500000) {
+      return Toast.info('图片大于500KB,重新选择')
     }
-    axios
-      .post('http://192.168.1.109:8090/fileupload', formData, config)
-      .then(response => {
-        console.log(response)
-        if (response.code === '200') {
-          this.setState({
-            title: '',
-            files: [],
-            content: '',
-            popupShow: false
-          })
-        }
-      })
-      .catch((err) => {
-      })
+    compressImage(files[0].url, 0.5, (resp) => {
+      // console.log(resp.size)
+      formData.append('file', resp)
+      formData.append('title', title)
+      formData.append('content', content)
+      formData.append('user_id', window.sessionStorage.getItem('userId'))
+      formData.append('username', window.sessionStorage.getItem('username'))
+      let config = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }
+      Toast.loading("Loading...", 20000)
+      axios
+        .post(`${API_URL}/fileupload`, formData, config)
+        .then(response => {
+          console.log(response)
+          if (response.code === 200) {
+            this.setState({
+              title: '',
+              files: [],
+              content: '',
+              popupShow: false
+            })
+          }
+          Toast.hide()
+          setTimeout(() => {
+            this.getTopics()
+          }, 2000)
+        })
+        .catch((err) => {
+          Toast.hide()
+        })
+    })
   }
   render() {
     const { data, loading, files } = this.state
