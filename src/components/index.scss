@@ -37,8 +37,9 @@
     justify-content: space-between;
 
     img {
-      height: 70vw;
-      width: auto !important;
+      width: 48vw;
+      height: auto !important;
+      max-height: 300px;
     }
   }
 }
