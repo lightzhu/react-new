@@ -94,7 +94,7 @@ class HomeList extends Component {
       }
       const obj = data[index--];
       return (
-        <div key={rowID} style={{ padding: '0 10px' }}>
+        <div key={rowID} style={{ padding: '0 10px', width: '100vw' }}>
           <div style={{ display: 'flex', padding: '8px 0' }}>
             <img style={{ height: '64px' }} src={obj.postUrl} alt="" />
             <div style={{ lineHeight: 1, flex: 1, marginLeft: '15px' }}>
