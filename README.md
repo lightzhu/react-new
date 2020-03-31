@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # 一个集电影资讯发牢骚于一体的 web 小应用，体验地址（速度较慢，耐心等待，遇到加载失败时请刷新。）
 
-[电影、资讯、发牢骚](https://lightzhu.github.io/react-new)
+[电影、资讯、发牢骚]https://lightzhu.github.io/react-new
 
 # 后台基于 Node.js,数据库 mongoDB
 
