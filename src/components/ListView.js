@@ -96,7 +96,7 @@ class HomeList extends Component {
       return (
         <div key={rowID} style={{ padding: '0 10px', width: '100vw' }}>
           <div style={{ display: 'flex', padding: '8px 0' }}>
-            <img style={{ height: '64px', maxWidth: '100px' }} src={obj.postUrl} alt="" />
+            <img style={{ height: '64px', maxWidth: '60px' }} src={obj.postUrl} alt="" />
             <div style={{ lineHeight: 1, flex: 1, marginLeft: '15px' }}>
               <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.title}</div>
               <div><span style={{ fontSize: '14px', color: '#FF6E27' }}>{obj.btUrl}</span></div>
