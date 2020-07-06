@@ -5,7 +5,8 @@ import compressImage from '../../components/compressImage'
 import fetch from '@/static/js/request'
 import axios from 'axios'
 import '../../style/echo.scss'
-const API_URL = 'https://webadd.herokuapp.com'
+// const API_URL = 'https://webadd.herokuapp.com'
+const API_URL = 'http://178.170.68.183:9090'
 class Echo extends Component {
   constructor(props) {
     super(props)
