@@ -8,6 +8,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [后台地址]https://github.com/lightzhu/Movie_Crawler.git
 
+# 前端效果
+
+![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov1.jpg)
+
+![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov2.jpg)
+
+![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov4.jpg)
+
+![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov3.jpg)
+
 ## Available Scripts
 
 In the project directory, you can run:
