@@ -10,13 +10,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # 前端效果
 
-![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov1.jpg)
-
-![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov2.jpg)
-
-![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov4.jpg)
-
-![](https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov3.jpg)
+<div align="center">
+<img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov1.jpg" height="568" width="320" >
+<img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov2.jpg" height="568" width="320" >
+</div>
+<div align="center">
+<img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov4.jpg" height="568" width="320" >
+<img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov3.jpg" height="568" width="320" >
+</div>
 
 ## Available Scripts
 
