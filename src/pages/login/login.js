@@ -56,9 +56,9 @@ class Login extends React.Component {
       pwd: val
     })
   }
-  // gotoRegister() {
-  //   history.push('/register')
-  // }
+  gotoRegister() {
+    this.props.history.push('/register')
+  }
   render() {
     return (
       <div className="login reg">
@@ -92,7 +92,7 @@ class Login extends React.Component {
           <Button
             type="primary"
             size="large"
-            onClick={this.props.register}
+            onClick={this.gotoRegister.bind(this)}
             className="login-form-button"
           >
             创建账号

@@ -56,9 +56,9 @@ class Me extends React.Component {
     // if (this.props.checkLogin) {
 
     // }
-    if (window.sessionStorage.getItem('logined') !== 'true') {
-      this.props.toLogin()
-    }
+    // if (window.sessionStorage.getItem('logined') !== 'true') {
+    //   this.props.toLogin()
+    // }
   }
 }
 

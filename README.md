@@ -19,6 +19,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov3.jpg" height="568" width="320" >
 </div>
 
+## 项目路由
+
+```
+path='/'          app组件
+path='/login'     登陆
+path='/register'  注册
+path='/flow'      兑换流量
+
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -54,9 +64,59 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### .eslintignore
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+配置 eslint 忽略目录
+
+### .prettiterrc
+
+配置 prettiter 插件重写配置,解决 eslint 和 prettier 插件的一些冲突问题
+
+### npm run eject
+
+暴露 create app 内部配置，方便修改
+
+### 安装 antd，并配置按需加载(安装 antd-mobile 是同样道理)
+
+npm i babel-plugin-import --save-dev
+方式一 重写.babelrc,需要将 package.json 里将 babel 选项剔除掉
+方式二 直接在 package.json 里添加
+
+```
+"plugins": [
+["import", {
+"libraryName": "antd",
+"libraryDirectory": "es",
+"style": "css" // `style: true` 会加载 less 文件
+}]
+]
+
+```
+
+### 其他方式
+
+安装 react-app-rewired customize-cra 并在 package.json 里修改配置
+新建 config-overrides.js
+
+### 关于 npm run build
+
+执行 build 命令
+
+将 package.json 的 homepage 配置成‘.’,代表将当前页面打包到相对路径下面，默认为‘’
+
+将 package.json 的 homepage 配置成‘https://lightzhu.github.io/项目名’,代表将当前页面打homepage下面的文件夹
+
+然后再执行一次部署 npm run deploy
+
+### 三步解决.gitignore 文件不生效的问题
+
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+
+### 通过 gh-pages -d build 的方式部署项目能请求到静态资源而不能执行 js 的问题
+
+更改 history: 将 BrowserHistory 为 HashHistory
 
 ## Learn More
 
@@ -87,53 +147,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-### .eslintignore
-
-配置 eslint 忽略目录
-
-### .prettiterrc
-
-配置 prettiter 插件重写配置,解决 eslint 和 prettier 插件的一些冲突问题
-
-### npm run eject
-
-暴露 create app 内部配置，方便修改
-
-### 安装 antd，并配置按需加载(安装 antd-mobile 是同样道理)
-
-npm i babel-plugin-import --save-dev
-方式一 重写.babelrc,需要将 package.json 里将 babel 选项剔除掉
-方式二 直接在 package.json 里添加
-"plugins": [
-["import", {
-"libraryName": "antd",
-"libraryDirectory": "es",
-"style": "css" // `style: true` 会加载 less 文件
-}]
-]
-
-### 其他方式
-
-安装 react-app-rewired customize-cra 并在 package.json 里修改配置
-新建 config-overrides.js
-
-### 关于 npm run build
-
-执行 build 命令
-
-将 package.json 的 homepage 配置成‘.’,代表将当前页面打包到相对路径下面，默认为‘’
-
-将 package.json 的 homepage 配置成‘https://lightzhu.github.io/项目名’,代表将当前页面打homepage下面的文件夹
-
-然后再执行一次部署 npm run deploy
-
-### 三步解决.gitignore 文件不生效的问题
-
-git rm -r --cached .
-git add .
-git commit -m 'update .gitignore'
-
-### 通过 gh-pages -d build 的方式部署项目能请求到青苔资源而不能执行 js 的问题
-
-更改 history: 将 BrowserHistory 为 HashHistory

@@ -11,7 +11,7 @@ class Counter extends Component {
     }
   }
   componentWillMount() {
-    this.unsubscribe = store.subscribe(() => {})
+    this.unsubscribe = store.subscribe(() => { })
   }
   componentWillUnmount() {
     this.unsubscribe() //取消订阅

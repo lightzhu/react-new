@@ -27,21 +27,32 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-.App .login-form{
+
+.App .login-form {
   width: 100%;
   height: 100vh;
   flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:0 30px;
+  padding: 0 30px;
 }
 
-@keyframes regist{
-  from {left: 0;}
-  to {left: 18px;}
+.line-center {
+  text-align: center;
+}
+
+@keyframes regist {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 18px;
+  }
 }

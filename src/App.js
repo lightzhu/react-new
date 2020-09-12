@@ -7,9 +7,6 @@ import Echo from './pages/echo/index'
 import News from './pages/news/news'
 import { connect } from 'react-redux'
 import { getNewsInfo } from './actions/Index'
-// import { createHashHistory } from 'history'
-// const history = createBrowserHistory()
-// const history = createHashHistory()
 
 class App extends React.Component {
   constructor(props) {
@@ -136,7 +133,8 @@ class App extends React.Component {
               selected={this.state.selectedTab === 'mine'}
               onPress={this.handleTabPress.bind(this, 'mine')}
             >
-              <Mine selected={this.state.selectedTab === 'mine'} checkLogin={this.state.checkLogin} />
+              {/* checkLogin={this.state.checkLogin} */}
+              <Mine selected={this.state.selectedTab === 'mine'} />
             </TabBar.Item>
           </TabBar>
         </div>

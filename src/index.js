@@ -1,14 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
 import { Provider } from 'react-redux'
 import store from './reducers/store'
+import { Router, Route, Switch } from 'react-router-dom'
+import './index.css'
 import * as serviceWorker from './serviceWorker'
-
+import App from './App'
+import Login from '@/pages/login/login'
+import Register from '@/pages/login/register'
+import QingPiFlow from '@/pages/tools/qingPiFlow'
+import { createHashHistory } from 'history'
+const history = createHashHistory()
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router history={history}>
+      <Switch>
+        <Route path='/' exact component={App}></Route>
+        <Route path='/login' exact component={Login}></Route>
+        <Route path='/register' exact component={Register}></Route>
+        <Route path='/flow' exact component={QingPiFlow}></Route>
+      </Switch>
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

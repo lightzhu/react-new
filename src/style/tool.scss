@@ -1,0 +1,26 @@
+.line-center {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-around;
+
+  .btns {
+    width: 40%;
+  }
+}
+
+.qing {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.resMsg {
+  color: red;
+  text-align: center;
+}

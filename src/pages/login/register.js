@@ -77,6 +77,9 @@ class Register extends React.Component {
       gender: value
     })
   }
+  goLogin() {
+    this.props.history.push('/login')
+  }
   render() {
     // const { getFieldProps } = this.props.form;
     return (
@@ -137,7 +140,7 @@ class Register extends React.Component {
             <Button
               type="primary"
               size="large"
-              onClick={this.props.goLogin}
+              onClick={this.goLogin.bind(this)}
               className="login-form-button"
             >
               已有账号
@@ -146,6 +149,9 @@ class Register extends React.Component {
         </form>
       </div>
     )
+  }
+  componentDidMount() {
+    console.log(this.props)
   }
 }
 
