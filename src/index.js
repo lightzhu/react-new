@@ -11,6 +11,8 @@ import Register from '@/pages/login/register'
 import QingPiFlow from '@/pages/tools/qingPiFlow'
 import { createHashHistory } from 'history'
 const history = createHashHistory()
+// import { createBrowserHistory } from 'history'
+// const history = createBrowserHistory()
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
