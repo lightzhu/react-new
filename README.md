@@ -28,7 +28,7 @@ path='/'          app组件
 path='/login'     登陆
 path='/register'  注册
 path='/flow'      兑换流量
-
+path='/uploadfile'轻云-图床
 ```
 
 ## Available Scripts
