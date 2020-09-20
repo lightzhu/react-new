@@ -2,7 +2,7 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
-  "proxy1": "http://192.168.1.109:9090",
+  "proxy": "http://192.168.0.109:9090",
   "proxy2": "http://imov.herokuapp.com",
   "homepage": ".",
   "dependencies": {

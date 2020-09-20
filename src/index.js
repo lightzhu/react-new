@@ -9,6 +9,8 @@ import App from './App'
 import Login from '@/pages/login/login'
 import Register from '@/pages/login/register'
 import QingPiFlow from '@/pages/tools/qingPiFlow'
+import UploadFile from '@/pages/tools/UploadFile'
+import NotFound from '@/pages/404'
 import { createHashHistory } from 'history'
 const history = createHashHistory()
 // import { createBrowserHistory } from 'history'
@@ -21,6 +23,8 @@ ReactDOM.render(
         <Route path='/login' exact component={Login}></Route>
         <Route path='/register' exact component={Register}></Route>
         <Route path='/flow' exact component={QingPiFlow}></Route>
+        <Route path='/uploadfile' exact component={UploadFile}></Route>
+        <Route component={NotFound}></Route>
       </Switch>
     </Router>
   </Provider>,
