@@ -20,6 +20,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov4.png" height="568" width="320" >
 <img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.6.5/image/github/mov3.jpg" height="568" width="320" >
 </div>
+<div align="center">
+<img src="https://cdn.jsdelivr.net/gh/lightzhu/public_cdn@0.7.0/image/github/mov5.png" height="568" width="320" >
+</div>
 
 ## 项目路由
 
