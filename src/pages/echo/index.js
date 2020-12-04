@@ -123,7 +123,7 @@ class Echo extends Component {
     const { data, loading, files } = this.state
     return (<div className="echo">
       <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
-        Notice: 你大爷发布了一条消息，大家都在讨论，快去围观
+        Notice: 二傻子发布了一条消息，大家都在讨论，快去围观
     </NoticeBar>
       {/* <img src={this.state.imgUrl}></img> */}
       <PullToRefresh

@@ -24,7 +24,7 @@ class Me extends React.Component {
     return (<div>
       <header className="head">
         <img src={user} alt=""></img>
-        <p className="nick">我是你大爷</p>
+        <p className="nick">我是二傻子</p>
       </header>
       <Grid data={data1}
         columnNum={3}
